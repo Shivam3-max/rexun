@@ -1,0 +1,395 @@
+// Rexsun storefront + admin database.
+//
+// SQLite locally so the whole store runs with no services to start; the
+// provider swaps to postgresql for deployment (Vercel's filesystem is
+// ephemeral). Nothing in the schema depends on SQLite-only behaviour — JSON
+// columns are stored as strings and parsed in src/lib/store.ts.
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ------------------------------------------------------------------ staff
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         String   @default("ADMIN") // ADMIN | STAFF
+  active       Boolean  @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime @default(now())
+
+  sessions AdminSession[]
+  audits   AuditLog[]
+}
+
+model AdminSession {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+
+  @@index([userId])
+}
+
+// -------------------------------------------------------------- catalogue
+
+model Department {
+  id       String @id @default(cuid())
+  slug     String @unique
+  name     String
+  blurb    String @default("")
+  image    String?
+  position Int    @default(0)
+  visible  Boolean @default(true)
+
+  categories Category[]
+  products   Product[]
+}
+
+model Category {
+  id       String @id @default(cuid())
+  slug     String @unique
+  name     String
+  deptId   String
+  dept     Department @relation(fields: [deptId], references: [id], onDelete: Cascade)
+  image    String?
+  position Int    @default(0)
+  visible  Boolean @default(true)
+
+  products Product[]
+
+  @@index([deptId])
+}
+
+model Product {
+  id         String @id @default(cuid())
+  slug       String @unique
+  name       String
+  brand      String
+  deptId     String
+  dept       Department @relation(fields: [deptId], references: [id])
+  categoryId String
+  category   Category   @relation(fields: [categoryId], references: [id])
+
+  tagline     String @default("")
+  description String @default("")
+  highlights  String @default("[]") // JSON string[]
+  specs       String @default("{}") // JSON Record<string,string>
+  rooms       String @default("[]") // JSON string[]
+  images      String @default("[]") // JSON string[]
+  options     String @default("[]") // JSON Option[]
+
+  warranty String?
+  wattage  Int?
+  sweep    Int?
+
+  /// Cached from the variants so listing pages never have to aggregate.
+  price    Int @default(0)
+  priceMax Int @default(0)
+  mrp      Int @default(0)
+  mrpMax   Int @default(0)
+
+  /// Price was filled in from the category median, not a real price list.
+  estimatedPrice Boolean @default(false)
+  own            Boolean @default(false)
+  featured       Boolean @default(false)
+  status         String  @default("ACTIVE") // ACTIVE | DRAFT | ARCHIVED
+  position       Int     @default(0)
+
+  variants  Variant[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([deptId])
+  @@index([categoryId])
+  @@index([status])
+  @@index([brand])
+}
+
+model Variant {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  sku       String  @unique
+  attrs     String  @default("{}") // JSON Record<string,string>
+  mrp       Int
+  price     Int
+  image     String?
+  stock     Int     @default(25)
+  active    Boolean @default(true)
+  position  Int     @default(0)
+
+  @@index([productId])
+}
+
+// -------------------------------------------------------------- customers
+
+model Customer {
+  id           String  @id @default(cuid())
+  phone        String  @unique
+  name         String
+  email        String?
+  passwordHash String? // null for guests who never set one
+  createdAt    DateTime @default(now())
+
+  addresses Address[]
+  orders    Order[]
+  sessions  CustomerSession[]
+}
+
+model CustomerSession {
+  id         String   @id @default(cuid())
+  token      String   @unique
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  expiresAt  DateTime
+
+  @@index([customerId])
+}
+
+model Address {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  label      String   @default("Home")
+  name       String
+  phone      String
+  line1      String
+  city       String
+  state      String   @default("")
+  pincode    String
+  isDefault  Boolean  @default(false)
+
+  @@index([customerId])
+}
+
+// ----------------------------------------------------------------- orders
+
+model Order {
+  id         String    @id @default(cuid())
+  ref        String    @unique
+  customerId String?
+  customer   Customer? @relation(fields: [customerId], references: [id])
+
+  name    String
+  phone   String
+  email   String?
+  address String
+  city    String
+  state   String @default("")
+  pincode String
+
+  status        String @default("PLACED") // PLACED CONFIRMED PACKED SHIPPED DELIVERED CANCELLED
+  paymentMethod String @default("upi")    // upi card netbanking cod
+  paymentStatus String @default("PENDING") // PENDING PAID REFUNDED FAILED
+
+  subtotal   Int
+  discount   Int    @default(0)
+  shipping   Int    @default(0)
+  total      Int
+  couponCode String?
+
+  courier        String?
+  trackingNumber String?
+  notes          String?
+
+  /// Razorpay's own ids, kept so a payment can be traced in their dashboard.
+  gatewayOrderId   String?
+  gatewayPaymentId String?
+  gatewayError     String?
+
+  /// Invoices are numbered only once an order is confirmed, so cancelled
+  /// orders never consume a number in the sequence.
+  invoiceNo String? @unique
+  invoiceAt DateTime?
+
+  cancelReason String?
+
+  placedAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items   OrderItem[]
+  events  OrderEvent[]
+  returns ReturnRequest[]
+
+  @@index([status])
+  @@index([phone])
+  @@index([placedAt])
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String?
+  slug      String
+  sku       String
+  name      String
+  attrs     String  @default("{}")
+  image     String?
+  qty       Int
+  price     Int
+  mrp       Int
+
+  @@index([orderId])
+}
+
+model OrderEvent {
+  id      String   @id @default(cuid())
+  orderId String
+  order   Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  status  String
+  note    String   @default("")
+  actor   String   @default("system")
+  at      DateTime @default(now())
+
+  @@index([orderId])
+}
+
+// -------------------------------------------------------------- marketing
+
+model Coupon {
+  id          String    @id @default(cuid())
+  code        String    @unique
+  description String    @default("")
+  type        String    @default("PERCENT") // PERCENT | FLAT
+  value       Int
+  minOrder    Int       @default(0)
+  maxDiscount Int?
+  usageLimit  Int?
+  usedCount   Int       @default(0)
+  startsAt    DateTime?
+  endsAt      DateTime?
+  active      Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+}
+
+model Banner {
+  id       String  @id @default(cuid())
+  slot     String // HERO | PROMO | STRIP
+  title    String  @default("")
+  subtitle String  @default("")
+  image    String?
+  link     String  @default("")
+  position Int     @default(0)
+  active   Boolean @default(true)
+
+  @@index([slot])
+}
+
+// --------------------------------------------------------------- plumbing
+
+model Setting {
+  key   String @id
+  value String // JSON
+}
+
+model Enquiry {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  email     String?
+  subject   String   @default("General")
+  message   String
+  status    String   @default("NEW") // NEW | REPLIED | CLOSED
+  reply     String?
+  createdAt DateTime @default(now())
+
+  @@index([status])
+}
+
+model SearchLog {
+  id      String   @id @default(cuid())
+  term    String
+  results Int
+  at      DateTime @default(now())
+
+  @@index([term])
+}
+
+model AuditLog {
+  id       String   @id @default(cuid())
+  userId   String?
+  user     AdminUser? @relation(fields: [userId], references: [id])
+  actor    String
+  action   String
+  entity   String
+  entityId String   @default("")
+  detail   String   @default("")
+  at       DateTime @default(now())
+
+  @@index([at])
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  url       String   @unique
+  filename  String
+  mime      String
+  size      Int
+  createdAt DateTime @default(now())
+}
+
+// ---------------------------------------------------------------- aftersales
+
+/// A customer asking for a replacement or a refund after delivery. Kept
+/// separate from the order's own status so an order can be delivered and
+/// still have an open claim against it.
+model ReturnRequest {
+  id      String @id @default(cuid())
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  sku      String
+  itemName String
+  qty      Int    @default(1)
+
+  type   String @default("REPLACE") // REPLACE | REFUND
+  reason String
+  detail String @default("")
+
+  status     String  @default("OPEN") // OPEN | APPROVED | REJECTED | RESOLVED
+  resolution String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([orderId])
+}
+
+// -------------------------------------------------------------- messaging
+
+/// Outbox for WhatsApp and email. Every message is written here first and
+/// marked sent afterwards, so nothing is lost when a provider is down — and
+/// so the panel can show exactly what a customer was told, and when.
+model Notification {
+  id       String @id @default(cuid())
+  channel  String // whatsapp | email
+  to       String
+  template String
+  subject  String @default("")
+  body     String
+
+  orderRef String?
+  status   String  @default("QUEUED") // QUEUED | SENT | FAILED | SKIPPED
+  error    String?
+
+  createdAt DateTime  @default(now())
+  sentAt    DateTime?
+
+  @@index([status])
+  @@index([orderRef])
+}

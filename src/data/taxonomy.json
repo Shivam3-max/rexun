@@ -1,0 +1,264 @@
+{
+ "departments": [
+  {
+   "slug": "fans",
+   "name": "Fans",
+   "blurb": "Ceiling, table, pedestal, wall and exhaust",
+   "count": 98
+  },
+  {
+   "slug": "lighting",
+   "name": "Lighting",
+   "blurb": "Bulbs, battens, panels and downlights",
+   "count": 56
+  },
+  {
+   "slug": "decorative-lighting",
+   "name": "Decorative Lighting",
+   "blurb": "Strip, rope and accent lights",
+   "count": 13
+  },
+  {
+   "slug": "kitchen-appliances",
+   "name": "Kitchen Appliances",
+   "blurb": "Mixers, kettles, induction and more",
+   "count": 25
+  },
+  {
+   "slug": "water-heaters",
+   "name": "Water Heaters",
+   "blurb": "Geysers and immersion rods",
+   "count": 30
+  },
+  {
+   "slug": "coolers-heaters",
+   "name": "Coolers & Heaters",
+   "blurb": "Air coolers and room heaters",
+   "count": 10
+  },
+  {
+   "slug": "garment-care",
+   "name": "Garment Care",
+   "blurb": "Dry and steam irons",
+   "count": 10
+  },
+  {
+   "slug": "torches-emergency",
+   "name": "Torches & Emergency",
+   "blurb": "Rechargeable torches and lanterns",
+   "count": 6
+  },
+  {
+   "slug": "home-essentials",
+   "name": "Home Essentials",
+   "blurb": "Spike guards, holders and doorbells",
+   "count": 20
+  }
+ ],
+ "categories": [
+  {
+   "slug": "geysers-water-heaters",
+   "name": "Geysers & Water Heaters",
+   "dept": "water-heaters",
+   "count": 25
+  },
+  {
+   "slug": "mixer-grinders-juicers",
+   "name": "Mixer Grinders & Juicers",
+   "dept": "kitchen-appliances",
+   "count": 10
+  },
+  {
+   "slug": "ceiling-fans",
+   "name": "Ceiling Fans",
+   "dept": "fans",
+   "count": 55
+  },
+  {
+   "slug": "pedestal-fans",
+   "name": "Pedestal Fans",
+   "dept": "fans",
+   "count": 9
+  },
+  {
+   "slug": "table-personal-fans",
+   "name": "Table & Personal Fans",
+   "dept": "fans",
+   "count": 7
+  },
+  {
+   "slug": "wall-fans",
+   "name": "Wall Fans",
+   "dept": "fans",
+   "count": 9
+  },
+  {
+   "slug": "air-coolers",
+   "name": "Air Coolers",
+   "dept": "coolers-heaters",
+   "count": 8
+  },
+  {
+   "slug": "exhaust-fans",
+   "name": "Exhaust Fans",
+   "dept": "fans",
+   "count": 18
+  },
+  {
+   "slug": "bulbs-lamps",
+   "name": "Bulbs & Lamps",
+   "dept": "lighting",
+   "count": 20
+  },
+  {
+   "slug": "battens-tubelights",
+   "name": "Battens & Tubelights",
+   "dept": "lighting",
+   "count": 15
+  },
+  {
+   "slug": "panels-downlights",
+   "name": "Panels & Downlights",
+   "dept": "lighting",
+   "count": 21
+  },
+  {
+   "slug": "strip-rope-lights",
+   "name": "Strip & Rope Lights",
+   "dept": "decorative-lighting",
+   "count": 9
+  },
+  {
+   "slug": "decorative-cob",
+   "name": "Decorative COB",
+   "dept": "decorative-lighting",
+   "count": 4
+  },
+  {
+   "slug": "torches-lanterns",
+   "name": "Torches & Lanterns",
+   "dept": "torches-emergency",
+   "count": 6
+  },
+  {
+   "slug": "electric-kettles",
+   "name": "Electric Kettles",
+   "dept": "kitchen-appliances",
+   "count": 5
+  },
+  {
+   "slug": "induction-cooktops",
+   "name": "Induction & Cooktops",
+   "dept": "kitchen-appliances",
+   "count": 8
+  },
+  {
+   "slug": "air-fryers",
+   "name": "Air Fryers",
+   "dept": "kitchen-appliances",
+   "count": 2
+  },
+  {
+   "slug": "room-heaters",
+   "name": "Room Heaters",
+   "dept": "coolers-heaters",
+   "count": 2
+  },
+  {
+   "slug": "immersion-rods",
+   "name": "Immersion Rods",
+   "dept": "water-heaters",
+   "count": 5
+  },
+  {
+   "slug": "irons",
+   "name": "Irons",
+   "dept": "garment-care",
+   "count": 10
+  },
+  {
+   "slug": "plugs-multiplugs",
+   "name": "Plugs & Multiplugs",
+   "dept": "home-essentials",
+   "count": 2
+  },
+  {
+   "slug": "holders-ceiling-roses",
+   "name": "Holders & Ceiling Roses",
+   "dept": "home-essentials",
+   "count": 9
+  },
+  {
+   "slug": "extension-spike-guards",
+   "name": "Extension & Spike Guards",
+   "dept": "home-essentials",
+   "count": 6
+  },
+  {
+   "slug": "doorbells",
+   "name": "Doorbells",
+   "dept": "home-essentials",
+   "count": 2
+  },
+  {
+   "slug": "mosquito-rackets",
+   "name": "Mosquito Rackets",
+   "dept": "home-essentials",
+   "count": 1
+  }
+ ],
+ "brands": [
+  {
+   "slug": "rexsun",
+   "name": "Rexsun",
+   "count": 6
+  },
+  {
+   "slug": "polycab",
+   "name": "Polycab",
+   "count": 113
+  },
+  {
+   "slug": "indo",
+   "name": "Indo",
+   "count": 52
+  },
+  {
+   "slug": "surya",
+   "name": "Surya",
+   "count": 94
+  },
+  {
+   "slug": "halonix",
+   "name": "Halonix",
+   "count": 3
+  }
+ ],
+ "rooms": [
+  {
+   "slug": "living-room",
+   "name": "Living Room",
+   "count": 177
+  },
+  {
+   "slug": "bedroom",
+   "name": "Bedroom",
+   "count": 121
+  },
+  {
+   "slug": "kitchen",
+   "name": "Kitchen",
+   "count": 133
+  },
+  {
+   "slug": "bathroom",
+   "name": "Bathroom",
+   "count": 69
+  },
+  {
+   "slug": "outdoor",
+   "name": "Outdoor",
+   "count": 17
+  }
+ ]
+}

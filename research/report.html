@@ -1,0 +1,428 @@
+<title>Rexsun D2C Shortlist</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --ground:#F6F7F8;
+  --surface:#FFFFFF;
+  --surface2:#EDEFF2;
+  --ink:#14161A;
+  --ink2:#454C57;
+  --ink3:#79818E;
+  --rule:#DBDEE3;
+  --rule2:#C3C8D0;
+  --red:#B7121E;
+  --gold:#9C7110;
+  --steel:#4A5563;
+  --ok:#1F6B4A;
+  --warn:#8A5A05;
+  --shadow:0 1px 2px rgba(20,22,26,.07);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0F1113;
+    --surface:#16191D;
+    --surface2:#1D2126;
+    --ink:#E7EAEE;
+    --ink2:#A8B0BB;
+    --ink3:#79828F;
+    --rule:#272C33;
+    --rule2:#3A414B;
+    --red:#EF6A72;
+    --gold:#DFAE55;
+    --steel:#9AA6B4;
+    --ok:#5CBE92;
+    --warn:#D7A653;
+    --shadow:0 1px 2px rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0F1113;
+  --surface:#16191D;
+  --surface2:#1D2126;
+  --ink:#E7EAEE;
+  --ink2:#A8B0BB;
+  --ink3:#79828F;
+  --rule:#272C33;
+  --rule2:#3A414B;
+  --red:#EF6A72;
+  --gold:#DFAE55;
+  --steel:#9AA6B4;
+  --ok:#5CBE92;
+  --warn:#D7A653;
+  --shadow:0 1px 2px rgba(0,0,0,.45);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Source Sans 3","Helvetica Neue",Arial,sans-serif;
+  font-size:16.5px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 96px}
+h1,h2,h3,h4{font-family:Archivo,"Helvetica Neue",Arial,sans-serif;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:var(--red)}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* ---------- masthead ---------- */
+.mast{border-bottom:2px solid var(--ink);padding:44px 0 20px;display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between}
+.mast .lock{display:flex;align-items:baseline;gap:10px}
+.wordmark{font-family:Archivo;font-weight:700;font-size:30px;letter-spacing:-.02em}
+.wordmark .sun{color:var(--gold)}
+.mast .tag{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink3)}
+.mast h1{font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink2);max-width:34ch;text-align:right}
+@media(max-width:640px){.mast h1{text-align:left}}
+
+/* ---------- lede ---------- */
+.lede{padding:32px 0 8px;max-width:66ch}
+.lede .kicker{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+.lede h2{font-size:clamp(28px,4.4vw,40px);font-weight:700;letter-spacing:-.025em;line-height:1.12}
+.lede p{margin-top:16px;font-size:18px;color:var(--ink2)}
+
+/* ---------- funnel strip ---------- */
+.funnel{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin:34px 0 8px}
+.funnel div{background:var(--surface);padding:16px 18px}
+.funnel .fv{font-family:"IBM Plex Mono",monospace;font-size:26px;font-weight:500;letter-spacing:-.02em;font-variant-numeric:tabular-nums;display:block}
+.funnel .fl{font-size:13px;color:var(--ink3);line-height:1.35;display:block;margin-top:4px}
+.funnel div:last-child .fv{color:var(--red)}
+@media(max-width:700px){.funnel{grid-template-columns:1fr 1fr}}
+
+/* ---------- nav ---------- */
+nav.toc{position:sticky;top:0;z-index:5;background:var(--ground);border-bottom:1px solid var(--rule);margin-top:40px;padding:10px 0;display:flex;gap:2px;flex-wrap:wrap}
+nav.toc a{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);text-decoration:none;padding:5px 9px;border:1px solid transparent;border-radius:2px}
+nav.toc a:hover{border-color:var(--rule2);color:var(--ink)}
+
+/* ---------- sections ---------- */
+section.blk{padding-top:56px}
+.blk > h2{font-size:13px;font-family:"IBM Plex Mono",monospace;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);padding-bottom:8px;border-bottom:1px solid var(--rule2)}
+.blk > h3.lead{font-size:26px;font-weight:700;letter-spacing:-.02em;margin-top:22px;max-width:24ch}
+.blk p.body{margin-top:14px;max-width:66ch;color:var(--ink2)}
+.blk p.body strong{color:var(--ink);font-weight:600}
+
+/* ---------- method steps ---------- */
+.steps{margin-top:28px;display:flex;flex-direction:column}
+.step{display:grid;grid-template-columns:56px 1fr 132px;gap:20px;align-items:baseline;padding:16px 0;border-top:1px solid var(--rule)}
+.step:last-child{border-bottom:1px solid var(--rule)}
+.step .sn{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink3);letter-spacing:.05em}
+.step h4{font-size:17px;font-weight:600}
+.step p{font-size:15px;color:var(--ink2);margin-top:5px;max-width:60ch}
+.step .cnt{font-family:"IBM Plex Mono",monospace;font-size:14px;font-variant-numeric:tabular-nums;text-align:right;color:var(--ink)}
+.step .cnt small{display:block;font-size:11px;color:var(--ink3);letter-spacing:.05em}
+@media(max-width:700px){.step{grid-template-columns:40px 1fr;}.step .cnt{grid-column:2;text-align:left}}
+
+/* ---------- callout ---------- */
+.note{margin-top:28px;border-left:3px solid var(--gold);background:var(--surface);padding:18px 22px;box-shadow:var(--shadow)}
+.note h4{font-size:16px;font-weight:600;margin-bottom:6px}
+.note p{font-size:15.5px;color:var(--ink2);max-width:64ch}
+.note.red{border-left-color:var(--red)}
+
+/* ---------- summary table ---------- */
+.tblwrap{margin-top:26px;overflow-x:auto;border:1px solid var(--rule);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:660px;font-size:14.5px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--rule)}
+th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);font-weight:500;background:var(--surface2);position:sticky;top:0}
+td.n{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface2)}
+
+/* ---------- product sheet ---------- */
+.dept{margin-top:40px}
+.dept-h{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline;justify-content:space-between;border-bottom:2px solid var(--ink);padding-bottom:7px}
+.dept-h h3{font-size:22px;font-weight:700;letter-spacing:-.02em}
+.dept-m{display:flex;gap:16px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink3);font-variant-numeric:tabular-nums}
+.cat{margin-top:22px}
+.cat h4{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--steel);display:flex;gap:9px;align-items:center}
+.cat h4 em{font-style:normal;color:var(--ink3);font-size:11px}
+.plist{list-style:none;margin:8px 0 0;padding:0}
+.plist li{display:grid;grid-template-columns:74px 1fr 54px 116px;gap:12px;align-items:baseline;padding:6px 8px;border-bottom:1px solid var(--rule);font-size:14.5px}
+.plist li:hover{background:var(--surface)}
+.pb{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.pn{color:var(--ink)}
+.pv{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink3);text-align:right}
+.pp{font-family:"IBM Plex Mono",monospace;font-size:13px;font-variant-numeric:tabular-nums;text-align:right;color:var(--ink2);white-space:nowrap}
+.np{color:var(--warn);font-size:11px;letter-spacing:.04em}
+.plist li.own{background:var(--surface2)}
+.plist li.own .pb{color:var(--red);font-weight:500}
+.plist li.own .pn{font-weight:600}
+@media(max-width:640px){
+  .plist li{grid-template-columns:1fr 100px;gap:4px 10px}
+  .pb{grid-column:1}.pv{grid-column:2;text-align:right}
+  .pn{grid-column:1/-1}.pp{grid-column:1/-1;text-align:left}
+}
+
+/* ---------- two-col lists ---------- */
+.cols{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.cols > div{background:var(--surface);padding:20px 22px}
+.cols h4{font-size:15px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.cols h4 .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.cols .in .dot{background:var(--ok)}
+.cols .out .dot{background:var(--red)}
+.cols ul{margin:0;padding-left:18px;color:var(--ink2);font-size:15px}
+.cols li{margin-bottom:6px}
+.cols li b{color:var(--ink);font-weight:600}
+@media(max-width:700px){.cols{grid-template-columns:1fr}}
+
+/* ---------- feature cards ---------- */
+.feat{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.feat article{background:var(--surface);padding:20px 22px}
+.feat .fn{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;color:var(--red);text-transform:uppercase}
+.feat h4{font-size:17px;font-weight:600;margin-top:7px}
+.feat p{font-size:14.8px;color:var(--ink2);margin-top:7px}
+
+/* ---------- screen sketch ---------- */
+.flow{margin-top:26px;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.flow div{background:var(--surface);border:1px solid var(--rule);padding:14px 12px}
+.flow .fs{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3)}
+.flow h5{font-family:Archivo;font-size:15px;font-weight:600;margin:5px 0 0}
+.flow p{font-size:13.5px;color:var(--ink2);margin-top:5px}
+@media(max-width:820px){.flow{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.flow{grid-template-columns:1fr}}
+
+/* ---------- decisions ---------- */
+.q{margin-top:22px;border-top:1px solid var(--rule)}
+.q > div{border-bottom:1px solid var(--rule);padding:15px 0;display:grid;grid-template-columns:26px 1fr;gap:14px}
+.q .qm{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--red)}
+.q h4{font-size:16.5px;font-weight:600}
+.q p{font-size:15px;color:var(--ink2);margin-top:5px;max-width:66ch}
+.q p em{color:var(--ink);font-style:normal;font-weight:600}
+
+footer{margin-top:64px;border-top:2px solid var(--ink);padding-top:16px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+</style>
+
+<div class="wrap">
+
+<div class="mast">
+  <div class="lock">
+    <span class="wordmark">REX<span class="sun">SUN</span></span>
+    <span class="tag">Life Banaye Easy</span>
+  </div>
+  <h1>Direct-to-consumer storefront — catalogue shortlist &amp; build plan</h1>
+</div>
+
+<div class="lede">
+  <p class="kicker">Report 01 · Before we write any code</p>
+  <h2>268 products a household will actually buy online, pulled out of a 2,573-SKU trade catalogue.</h2>
+  <p>Amit Electricals is a dealer catalogue: coils of wire by the 180 m drum, MCB ratings, distribution boards, grid-tie inverters. Almost none of that belongs on a consumer site. This is what survives the cut, why, and what the Rexsun store should be built to do with it.</p>
+</div>
+
+<div class="funnel">
+  <div><span class="fv">2,573</span><span class="fl">SKUs in the Amit Electricals catalogue</span></div>
+  <div><span class="fv">970</span><span class="fl">in consumer-relevant categories</span></div>
+  <div><span class="fv">677</span><span class="fl">after cutting trade-only families</span></div>
+  <div><span class="fv">268</span><span class="fl">shopper-facing products, variants merged</span></div>
+</div>
+
+<nav class="toc">
+  <a href="#method">Method</a>
+  <a href="#collapse">Variant merge</a>
+  <a href="#mix">Category mix</a>
+  <a href="#rexsun">Rexsun own-label</a>
+  <a href="#sheet">Full product list</a>
+  <a href="#cuts">What I cut</a>
+  <a href="#gaps">Data gaps</a>
+  <a href="#features">Site features</a>
+  <a href="#ux">UI / UX</a>
+  <a href="#build">Build plan</a>
+  <a href="#decide">Your decisions</a>
+</nav>
+
+<section class="blk" id="method">
+  <h2>Method</h2>
+  <h3 class="lead">Four passes over the B2B data</h3>
+  <p class="body">I read the live catalogue file the Amit Electricals site builds from — 2,573 products across Polycab (1,998), Surya (270), Halonix (251), Indo (53) and one Rexsun placeholder. Every product carries a brand, a category taken from that brand's own website, specs, MRP where published, and a locally cached image.</p>
+
+  <div class="steps">
+    <div class="step">
+      <span class="sn">Pass 1</span>
+      <div><h4>Keep only categories a household shops for</h4>
+        <p>Fans, lighting, kitchen and water-heating appliances, garment care, torches, and the plug-and-holder accessories people replace themselves. Everything sold through an electrician or a project quote is dropped at this step.</p></div>
+      <span class="cnt">970<small>of 2,573</small></span>
+    </div>
+    <div class="step">
+      <span class="sn">Pass 2</span>
+      <div><h4>Merge colour-temperature and wattage twins</h4>
+        <p>A single "Aelius Nxt-G LED Bulb" appears 21 times in the trade file — once per wattage × colour temperature. On a consumer site that is one product with two dropdowns, not 21 tiles.</p></div>
+      <span class="cnt">677 → 561<small>SKUs → products</small></span>
+    </div>
+    <div class="step">
+      <span class="sn">Pass 3</span>
+      <div><h4>Cap each category so the store stays browsable</h4>
+        <p>Ranked by whether a price exists, whether images exist, and how deep the family runs — a 28-variant fan range earns its slot over a one-off. Caps set per category, not globally, so no aisle ends up empty.</p></div>
+      <span class="cnt">268<small>products</small></span>
+    </div>
+    <div class="step">
+      <span class="sn">Pass 4</span>
+      <div><h4>Rebuild the taxonomy for shoppers, not for brands</h4>
+        <p>The source categories come from four different manufacturers' websites and contradict each other. Indo files geysers under "Iron"; Surya files water heaters under "Heating Appliances"; air coolers hide inside "General". I remapped all 268 onto one shopper taxonomy: 10 departments, 26 categories.</p></div>
+      <span class="cnt">10 / 26<small>depts / categories</small></span>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="collapse">
+  <h2>The one decision that shapes everything</h2>
+  <h3 class="lead">677 trade SKUs become 268 product pages</h3>
+  <p class="body">This is the single biggest difference between the B2B site and this one, and it is worth being explicit about because it changes how the whole store is built. On the dealer site, "Pearl COB Swivel LED Downlight · 12 Wattage · 4000K" is a line item you order by code. On a consumer site it is <strong>one product page with a wattage selector and a light-colour selector</strong>, and the price updates as you choose.</p>
+  <p class="body">Same for fans: SILENCIO MINI is 28 SKUs in the trade file — sweep sizes × finishes. It becomes one product page with a size and a colour swatch. The customer sees a clean, shoppable store; every underlying SKU is still there, mapped behind the variant picker, so stock and pricing stay accurate.</p>
+  <div class="note">
+    <h4>What this buys you</h4>
+    <p>A shopper browsing ceiling fans sees 55 fans, not 256 near-identical rows. Search results stay clean. Category pages load fast. And when you add a finish or a wattage later, it's a variant on an existing page, not a new listing to photograph and describe from scratch.</p>
+  </div>
+</section>
+
+<section class="blk" id="mix">
+  <h2>Category mix</h2>
+  <h3 class="lead">10 departments, 26 categories, ₹36 to ₹19,999</h3>
+  <p class="body">The mix follows the strength of the underlying catalogue rather than an idealised store plan — fans and lighting are where Polycab and Surya are deep, so that is where the store is deep. Appliances are thinner and are exactly where the Rexsun own-label range fills the gap.</p>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Department</th><th>Category</th><th>Products</th><th>Need price</th><th>MRP range</th><th>Brands</th></tr></thead>
+      <tbody><tr><td>Fans</td><td>Ceiling Fans</td><td class="n">55</td><td class="n">4</td><td class="n">₹1,399–₹19,999</td><td>Polycab, Indo, Surya, Halonix</td></tr><tr><td>Fans</td><td>Pedestal Fans</td><td class="n">9</td><td class="n"></td><td class="n">₹1,899–₹5,199</td><td>Polycab, Indo</td></tr><tr><td>Fans</td><td>Table &amp; Personal Fans</td><td class="n">7</td><td class="n">2</td><td class="n">₹1,899–₹4,199</td><td>Polycab, Indo, Surya</td></tr><tr><td>Fans</td><td>Wall Fans</td><td class="n">9</td><td class="n">1</td><td class="n">₹1,899–₹6,999</td><td>Polycab, Indo, Surya</td></tr><tr><td>Fans</td><td>Exhaust Fans</td><td class="n">18</td><td class="n">2</td><td class="n">₹949–₹9,499</td><td>Polycab, Indo, Surya</td></tr><tr><td>Lighting</td><td>Bulbs &amp; Lamps</td><td class="n">21</td><td class="n">1</td><td class="n">₹55–₹1,400</td><td>Polycab, Surya, Halonix</td></tr><tr><td>Lighting</td><td>Battens &amp; Tubelights</td><td class="n">14</td><td class="n"></td><td class="n">₹250–₹1,500</td><td>Polycab, Surya</td></tr><tr><td>Lighting</td><td>Panels &amp; Downlights</td><td class="n">21</td><td class="n"></td><td class="n">₹150–₹4,800</td><td>Polycab, Surya</td></tr><tr><td>Decorative Lighting</td><td>Strip &amp; Rope Lights</td><td class="n">8</td><td class="n"></td><td class="n">₹249–₹9,995</td><td>Polycab, Surya</td></tr><tr><td>Decorative Lighting</td><td>Decorative COB</td><td class="n">5</td><td class="n"></td><td class="n">₹300–₹1,000</td><td>Surya</td></tr><tr><td>Kitchen Appliances</td><td>Mixer Grinders &amp; Juicers</td><td class="n">10</td><td class="n">9</td><td class="n">₹1,699–₹1,699</td><td>Indo, Rexsun, Surya</td></tr><tr><td>Kitchen Appliances</td><td>Electric Kettles</td><td class="n">5</td><td class="n">2</td><td class="n">₹589–₹899</td><td>Indo, Surya</td></tr><tr><td>Kitchen Appliances</td><td>Induction &amp; Cooktops</td><td class="n">8</td><td class="n">4</td><td class="n">₹1,499–₹2,399</td><td>Indo, Surya</td></tr><tr><td>Kitchen Appliances</td><td>Air Fryers</td><td class="n">2</td><td class="n"></td><td class="n">₹4,299–₹4,599</td><td>Indo</td></tr><tr><td>Water Heaters</td><td>Geysers &amp; Water Heaters</td><td class="n">25</td><td class="n">10</td><td class="n">₹2,199–₹13,990</td><td>Polycab, Indo, Rexsun, Surya</td></tr><tr><td>Water Heaters</td><td>Immersion Rods</td><td class="n">5</td><td class="n"></td><td class="n">₹449–₹925</td><td>Surya, Indo</td></tr><tr><td>Air Coolers</td><td>Air Coolers</td><td class="n">8</td><td class="n">5</td><td class="n">₹4,999–₹6,499</td><td>Indo, Surya</td></tr><tr><td>Room Heaters</td><td>Room Heaters</td><td class="n">2</td><td class="n"></td><td class="n">₹999–₹1,999</td><td>Indo</td></tr><tr><td>Garment Care</td><td>Irons</td><td class="n">10</td><td class="n"></td><td class="n">₹479–₹1,400</td><td>Surya, Indo</td></tr><tr><td>Torches &amp; Emergency</td><td>Torches</td><td class="n">6</td><td class="n">1</td><td class="n">₹225–₹1,100</td><td>Surya, Halonix</td></tr><tr><td>Home Essentials</td><td>Accessories</td><td class="n">6</td><td class="n"></td><td class="n">₹125–₹875</td><td>Polycab</td></tr><tr><td>Home Essentials</td><td>Plugs &amp; Multiplugs</td><td class="n">1</td><td class="n"></td><td class="n">₹55–₹84</td><td>Polycab</td></tr><tr><td>Home Essentials</td><td>Holders &amp; Ceiling Roses</td><td class="n">9</td><td class="n"></td><td class="n">₹36–₹101</td><td>Polycab</td></tr><tr><td>Home Essentials</td><td>Doorbells</td><td class="n">2</td><td class="n"></td><td class="n">₹205–₹245</td><td>Polycab</td></tr><tr><td>Home Essentials</td><td>Extension &amp; Spike Guards</td><td class="n">1</td><td class="n"></td><td class="n">₹449–₹449</td><td>Surya</td></tr><tr><td>Home Essentials</td><td>Mosquito Rackets</td><td class="n">1</td><td class="n"></td><td class="n">₹575–₹575</td><td>Surya</td></tr></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="blk" id="rexsun">
+  <h2>Rexsun own-label</h2>
+  <h3 class="lead">Six hero products carry the brand and the margin</h3>
+  <p class="body">The six creatives you shared — chopper, hand blender, juicer mixer grinder, two mixer grinders, and the 25 L storage water heater — are the only products on this site where you own the brand, the pricing and the warranty. They should not sit quietly inside "Kitchen Appliances" alongside a Surya mixer.</p>
+  <p class="body">My recommendation: a permanent <strong>Rexsun</strong> entry in the main navigation, a dedicated brand page built from those six creatives, and a Rexsun badge on the product card wherever one appears in a category listing. Everywhere else on the site, the other four brands are presented plainly, by name — you are the retailer for them and the manufacturer for Rexsun, and the store should read that way.</p>
+  <div class="note red">
+    <h4>What I need from you for these six</h4>
+    <p>Selling price and MRP, warranty terms in writing (the creatives say 1 year on the chopper and the JMG), box contents, and the product shots as separate files — the creatives are marketing banners with text baked in, and a product page needs the appliance on white with three or four angles.</p>
+  </div>
+</section>
+
+<section class="blk" id="sheet">
+  <h2>Full product list</h2>
+  <h3 class="lead">All 268, as they will appear in the store</h3>
+  <p class="body">Grouped by the new shopper taxonomy. "var" is the number of trade SKUs merged behind that one product page. Prices shown are the published MRP range across those variants; the selling price is a separate decision per line.</p>
+  <section class="dept">
+<header class="dept-h"><h3>Fans</h3><p class="dept-m"><span>98 products</span><span>343 source SKUs</span><span>₹949–₹19,999</span></p></header><div class="cat"><h4>Ceiling Fans <em>55</em></h4><ul class="plist"><li><span class="pb">Polycab</span><span class="pn">SILENCIO MINI</span><span class="pv">28 var</span><span class="pp">₹6,099–₹7,199</span></li><li><span class="pb">Polycab</span><span class="pn">ZOOMER PRIME</span><span class="pv">19 var</span><span class="pp">₹3,599</span></li><li><span class="pb">Polycab</span><span class="pn">SILENCIO MINI LED</span><span class="pv">18 var</span><span class="pp">₹6,999–₹7,199</span></li><li><span class="pb">Polycab</span><span class="pn">AERORUSH</span><span class="pv">16 var</span><span class="pp">₹5,699–₹5,799</span></li><li><span class="pb">Polycab</span><span class="pn">ZOOMER HS</span><span class="pv">16 var</span><span class="pp">₹2,799–₹3,799</span></li><li><span class="pb">Polycab</span><span class="pn">ZOOMER DLX</span><span class="pv">15 var</span><span class="pp">₹2,999–₹3,199</span></li><li><span class="pb">Polycab</span><span class="pn">ELANZA NEO</span><span class="pv">14 var</span><span class="pp">₹5,599–₹5,999</span></li><li><span class="pb">Polycab</span><span class="pn">VITAL PLUS</span><span class="pv">8 var</span><span class="pp">₹4,999</span></li><li><span class="pb">Polycab</span><span class="pn">VITAL HS</span><span class="pv">7 var</span><span class="pp">₹4,199</span></li><li><span class="pb">Polycab</span><span class="pn">ELEGANZ PLUS</span><span class="pv">6 var</span><span class="pp">₹5,499</span></li><li><span class="pb">Polycab</span><span class="pn">VITAL PETAL</span><span class="pv">6 var</span><span class="pp">₹5,199</span></li><li><span class="pb">Polycab</span><span class="pn">AERO ULTRASPEED</span><span class="pv">5 var</span><span class="pp">₹5,199</span></li><li><span class="pb">Polycab</span><span class="pn">AEROBLISS</span><span class="pv">5 var</span><span class="pp">₹5,399</span></li><li><span class="pb">Polycab</span><span class="pn">ELEGANZ PEARL DESIGNER 2.0</span><span class="pv">5 var</span><span class="pp">₹5,499</span></li><li><span class="pb">Polycab</span><span class="pn">SILENCIO MINI DLX</span><span class="pv">5 var</span><span class="pp">₹6,499–₹7,499</span></li><li><span class="pb">Polycab</span><span class="pn">WIZZY NEO</span><span class="pv">5 var</span><span class="pp">₹6,499–₹7,399</span></li><li><span class="pb">Polycab</span><span class="pn">AEROFAME</span><span class="pv">4 var</span><span class="pp">₹7,599</span></li><li><span class="pb">Polycab</span><span class="pn">AEROGLAM</span><span class="pv">4 var</span><span class="pp">₹5,799</span></li><li><span class="pb">Polycab</span><span class="pn">AMAZE DLX PLUS</span><span class="pv">4 var</span><span class="pp">₹5,099</span></li><li><span class="pb">Polycab</span><span class="pn">AMAZE PLUS</span><span class="pv">4 var</span><span class="pp">₹3,999</span></li><li><span class="pb">Polycab</span><span class="pn">ELEGANZ PEARL DESIGNER</span><span class="pv">4 var</span><span class="pp">₹5,499</span></li><li><span class="pb">Polycab</span><span class="pn">NIPPY HS</span><span class="pv">4 var</span><span class="pp">₹2,899</span></li><li><span class="pb">Polycab</span><span class="pn">AEREO PLUS</span><span class="pv">3 var</span><span class="pp">₹5,499</span></li><li><span class="pb">Polycab</span><span class="pn">JUNO</span><span class="pv">3 var</span><span class="pp">₹2,899</span></li><li><span class="pb">Polycab</span><span class="pn">SILENCIO CRUISER</span><span class="pv">3 var</span><span class="pp">₹11,499</span></li><li><span class="pb">Polycab</span><span class="pn">SILENCIO CRUISER PRIME</span><span class="pv">3 var</span><span class="pp">₹10,399–₹14,199</span></li><li><span class="pb">Polycab</span><span class="pn">SUPERB NEO</span><span class="pv">3 var</span><span class="pp">₹3,999</span></li><li><span class="pb">Polycab</span><span class="pn">SUPERIA SP01</span><span class="pv">3 var</span><span class="pp">₹13,499</span></li><li><span class="pb">Polycab</span><span class="pn">ZOOMER PRIME BLDC</span><span class="pv">3 var</span><span class="pp">₹5,999</span></li><li><span class="pb">Polycab</span><span class="pn">AIRIKA</span><span class="pv">2 var</span><span class="pp">₹4,999</span></li><li><span class="pb">Polycab</span><span class="pn">ARIA 32</span><span class="pv">2 var</span><span class="pp">₹4,499</span></li><li><span class="pb">Polycab</span><span class="pn">DIVINA UL5 BLDC</span><span class="pv">2 var</span><span class="pp">₹16,999–₹17,499</span></li><li><span class="pb">Polycab</span><span class="pn">ELANZA NEO BLDC</span><span class="pv">2 var</span><span class="pp">₹7,499</span></li><li><span class="pb">Polycab</span><span class="pn">SILENCIO CRUISER PRIME BLDC</span><span class="pv">2 var</span><span class="pp">₹10,999–₹14,999</span></li><li><span class="pb">Polycab</span><span class="pn">CHARISMA PLUS</span><span class="pv">2 var</span><span class="pp">₹3,499</span></li><li><span class="pb">Polycab</span><span class="pn">SUPERB PLUS</span><span class="pv">2 var</span><span class="pp">₹4,099</span></li><li><span class="pb">Polycab</span><span class="pn">DIVINA BLDC</span><span class="pv"></span><span class="pp">₹16,999</span></li><li><span class="pb">Indo</span><span class="pn">Indo Budget Neo High Speed Ceiling Fan</span><span class="pv"></span><span class="pp">₹1,499</span></li><li><span class="pb">Indo</span><span class="pn">Indo Emperor EP-05 Fancy Ceiling Fan</span><span class="pv"></span><span class="pp">₹9,499</span></li><li><span class="pb">Indo</span><span class="pn">Indo Emperor EP-06 Fancy Ceiling Fan</span><span class="pv"></span><span class="pp">₹7,999</span></li><li><span class="pb">Indo</span><span class="pn">Indo Kohinoor 900mm Ceiling Fan</span><span class="pv"></span><span class="pp">₹1,399</span></li><li><span class="pb">Indo</span><span class="pn">Indo Little Active 600mm Ceiling Fan</span><span class="pv"></span><span class="pp">₹1,399</span></li><li><span class="pb">Polycab</span><span class="pn">POISE BLDC</span><span class="pv"></span><span class="pp">₹18,999</span></li><li><span class="pb">Polycab</span><span class="pn">SUPERIA MEGNA</span><span class="pv"></span><span class="pp">₹10,999</span></li><li><span class="pb">Polycab</span><span class="pn">SUPERIA PETAL</span><span class="pv"></span><span class="pp">₹8,999</span></li><li><span class="pb">Polycab</span><span class="pn">SUPERIA QUADRO</span><span class="pv"></span><span class="pp">₹10,999</span></li><li><span class="pb">Polycab</span><span class="pn">SUPERIA SP02 BLDC</span><span class="pv"></span><span class="pp">₹19,999</span></li><li><span class="pb">Polycab</span><span class="pn">SUPERIA SP03</span><span class="pv"></span><span class="pp">₹10,850</span></li><li><span class="pb">Polycab</span><span class="pn">SUPERIA SP04 BLDC</span><span class="pv"></span><span class="pp">₹16,999</span></li><li><span class="pb">Polycab</span><span class="pn">SUPERIA SP06</span><span class="pv"></span><span class="pp">₹15,999</span></li><li><span class="pb">Polycab</span><span class="pn">SUPERIA SP07</span><span class="pv"></span><span class="pp">₹12,499</span></li><li><span class="pb">Surya</span><span class="pn">5 Star</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">5 Star Petal</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Aero 400</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Halonix</span><span class="pn">Aero Fresh Ceiling Fan</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li></ul></div><div class="cat"><h4>Pedestal Fans <em>9</em></h4><ul class="plist"><li><span class="pb">Polycab</span><span class="pn">Aery HS Pedestal Fan</span><span class="pv">5 var</span><span class="pp">₹4,999</span></li><li><span class="pb">Polycab</span><span class="pn">Aery Pedestal Fan</span><span class="pv">5 var</span><span class="pp">₹4,499</span></li><li><span class="pb">Polycab</span><span class="pn">Optima Mini Pedestal Fan</span><span class="pv">3 var</span><span class="pp">₹3,999</span></li><li><span class="pb">Polycab</span><span class="pn">Elanza Pedestal Fan</span><span class="pv"></span><span class="pp">₹4,299</span></li><li><span class="pb">Indo</span><span class="pn">Indo Delta Hight Speed Stand/Pedestal Fan</span><span class="pv"></span><span class="pp">₹2,149</span></li><li><span class="pb">Indo</span><span class="pn">Indo SHINE 400mm High Speed Oscillating pedestal Farrata Fan</span><span class="pv"></span><span class="pp">₹1,899</span></li><li><span class="pb">Indo</span><span class="pn">Indo SHINE 400mm High Speed Oscillating pedestal Farrata Fan Combo</span><span class="pv"></span><span class="pp">₹3,699</span></li><li><span class="pb">Indo</span><span class="pn">Indo SHINE 400mm High Speed Oscillating pedestal Farrata Fan for Home, Offi…</span><span class="pv"></span><span class="pp">₹1,999</span></li><li><span class="pb">Polycab</span><span class="pn">Marvo Anti-Mosquito Pedestal Fan</span><span class="pv"></span><span class="pp">₹5,199</span></li></ul></div><div class="cat"><h4>Table &amp; Personal Fans <em>7</em></h4><ul class="plist"><li><span class="pb">Polycab</span><span class="pn">Aery HS Table Fan</span><span class="pv">5 var</span><span class="pp">₹4,199</span></li><li><span class="pb">Polycab</span><span class="pn">Aery Table Fan</span><span class="pv">5 var</span><span class="pp">₹3,599</span></li><li><span class="pb">Polycab</span><span class="pn">Elanza</span><span class="pv"></span><span class="pp">₹3,499</span></li><li><span class="pb">Polycab</span><span class="pn">FANTASY CABIN Fan</span><span class="pv"></span><span class="pp">₹2,999</span></li><li><span class="pb">Indo</span><span class="pn">Indo Royal High Speed Table Fan 2200 RPM</span><span class="pv"></span><span class="pp">₹1,899</span></li><li><span class="pb">Surya</span><span class="pn">Aero-X</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">AP-12</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li></ul></div><div class="cat"><h4>Wall Fans <em>9</em></h4><ul class="plist"><li><span class="pb">Polycab</span><span class="pn">Aery HS Wall Fan</span><span class="pv">5 var</span><span class="pp">₹4,299</span></li><li><span class="pb">Polycab</span><span class="pn">Aery Wall Fan</span><span class="pv">5 var</span><span class="pp">₹3,699</span></li><li><span class="pb">Polycab</span><span class="pn">Aerobliss Metal Wall Fan</span><span class="pv"></span><span class="pp">₹6,999</span></li><li><span class="pb">Polycab</span><span class="pn">Elanza Wall Fan</span><span class="pv"></span><span class="pp">₹3,599</span></li><li><span class="pb">Indo</span><span class="pn">Indo 16 inch Ellie Wall hanging Fan Combo (Pack of 2 )</span><span class="pv"></span><span class="pp">₹3,699</span></li><li><span class="pb">Indo</span><span class="pn">Indo 16 inch Ellie Wall hanging Fan for Home, Office (Combo Pack of 2)</span><span class="pv"></span><span class="pp">₹3,699</span></li><li><span class="pb">Indo</span><span class="pn">Indo Ellie Wall hanging Fan 16 Inch Sweep &amp; 2200 RPM</span><span class="pv"></span><span class="pp">₹1,899</span></li><li><span class="pb">Indo</span><span class="pn">Indo Wall Fan Alpha</span><span class="pv"></span><span class="pp">₹1,899</span></li><li><span class="pb">Surya</span><span class="pn">Aero-X Wall Fan</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li></ul></div><div class="cat"><h4>Exhaust Fans <em>18</em></h4><ul class="plist"><li><span class="pb">Polycab</span><span class="pn">FRESHNER NEO</span><span class="pv">6 var</span><span class="pp">₹1,799–₹2,099</span></li><li><span class="pb">Polycab</span><span class="pn">AIROFRESH</span><span class="pv">4 var</span><span class="pp">₹1,499–₹1,899</span></li><li><span class="pb">Polycab</span><span class="pn">FRESHNER NEO HS</span><span class="pv">4 var</span><span class="pp">₹1,849–₹2,049</span></li><li><span class="pb">Polycab</span><span class="pn">FRESHLY PRIME</span><span class="pv">3 var</span><span class="pp">₹2,199</span></li><li><span class="pb">Polycab</span><span class="pn">Freshner ES Metal</span><span class="pv">3 var</span><span class="pp">₹2,199–₹2,799</span></li><li><span class="pb">Polycab</span><span class="pn">SUPERB Heavy Duty Exhaust</span><span class="pv">3 var</span><span class="pp">₹4,799–₹9,499</span></li><li><span class="pb">Polycab</span><span class="pn">FRESHNER AXIAL</span><span class="pv">2 var</span><span class="pp">₹1,599</span></li><li><span class="pb">Polycab</span><span class="pn">FRESHLY PRIME BLDC</span><span class="pv"></span><span class="pp">₹2,799</span></li><li><span class="pb">Polycab</span><span class="pn">FRESHLY PRIME PREMIUM</span><span class="pv"></span><span class="pp">₹2,399</span></li><li><span class="pb">Polycab</span><span class="pn">Freshner ES Metal Reversible</span><span class="pv"></span><span class="pp">₹2,199</span></li><li><span class="pb">Indo</span><span class="pn">Indo 8 Inch Exhaust Fan/Ventilation Fan For Bathroom</span><span class="pv"></span><span class="pp">₹1,099</span></li><li><span class="pb">Indo</span><span class="pn">Indo Exhaust Fan For Bathroom &amp; Kitchen 6 Inch (Ventilation Fan)</span><span class="pv"></span><span class="pp">₹949</span></li><li><span class="pb">Indo</span><span class="pn">Indo 12 Inch High Power Exhaust Fan</span><span class="pv"></span><span class="pp">₹1,299</span></li><li><span class="pb">Indo</span><span class="pn">Indo 8 Inch Exhaust Fan/Ventilation fan for Home 2000 RPM (Black pack of 2)</span><span class="pv"></span><span class="pp">₹1,999</span></li><li><span class="pb">Indo</span><span class="pn">Indo 9 Inch High Power Reversible Exhaust Fan</span><span class="pv"></span><span class="pp">₹1,099</span></li><li><span class="pb">Indo</span><span class="pn">Indo High Speed Fresh Air Exhaust Fan</span><span class="pv"></span><span class="pp">₹1,850</span></li><li><span class="pb">Surya</span><span class="pn">Axial DX Ventilation Fan</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Axial Ventilation Fan</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li></ul></div></section><section class="dept">
+<header class="dept-h"><h3>Lighting</h3><p class="dept-m"><span>56 products</span><span>173 source SKUs</span><span>₹55–₹4,800</span></p></header><div class="cat"><h4>Bulbs &amp; Lamps <em>21</em></h4><ul class="plist"><li><span class="pb">Polycab</span><span class="pn">Aelius Nxt-G LED Bulb</span><span class="pv">21 var</span><span class="pp">₹150–₹275</span></li><li><span class="pb">Polycab</span><span class="pn">Aelius Nxt-G LED T-Lamp</span><span class="pv">12 var</span><span class="pp">₹350–₹1,400</span></li><li><span class="pb">Polycab</span><span class="pn">Aelius LED Deco Lamp</span><span class="pv">8 var</span><span class="pp">₹75</span></li><li><span class="pb">Polycab</span><span class="pn">NXT-G LED BULB</span><span class="pv">3 var</span><span class="pp">₹300–₹500</span></li><li><span class="pb">Polycab</span><span class="pn">Aelius Dimmable Emergency LED Bulb</span><span class="pv">2 var</span><span class="pp">₹850–₹950</span></li><li><span class="pb">Surya</span><span class="pn">0.5W Diamond Mini LED Lamp</span><span class="pv"></span><span class="pp">₹55</span></li><li><span class="pb">Surya</span><span class="pn">0.5W NEO MAXX LED LAMP</span><span class="pv"></span><span class="pp">₹55</span></li><li><span class="pb">Surya</span><span class="pn">0.5W Plug &amp; Play LED Lamp</span><span class="pv"></span><span class="pp">₹100</span></li><li><span class="pb">Surya</span><span class="pn">0.5W RAINBOW LED LAMP</span><span class="pv"></span><span class="pp">₹75</span></li><li><span class="pb">Polycab</span><span class="pn">Aelius Multi-CCT LED Deco Lamp</span><span class="pv"></span><span class="pp">₹99</span></li><li><span class="pb">Surya</span><span class="pn">BUG SHIELD LED LAMP</span><span class="pv"></span><span class="pp">₹249</span></li><li><span class="pb">Surya</span><span class="pn">CANDLE LED LAMP</span><span class="pv"></span><span class="pp">₹200</span></li><li><span class="pb">Surya</span><span class="pn">DURO LED LAMP</span><span class="pv"></span><span class="pp">₹750</span></li><li><span class="pb">Surya</span><span class="pn">FILAMENT LED LAMP</span><span class="pv"></span><span class="pp">₹275</span></li><li><span class="pb">Surya</span><span class="pn">NEO MAXX - D LED LAMP</span><span class="pv"></span><span class="pp">₹148</span></li><li><span class="pb">Surya</span><span class="pn">NEO SWITCH 3 IN 1 LED LAMP</span><span class="pv"></span><span class="pp">₹250</span></li><li><span class="pb">Surya</span><span class="pn">PLATINA LED LAMP</span><span class="pv"></span><span class="pp">₹175</span></li><li><span class="pb">Surya</span><span class="pn">PLATINA VIVID LED LAMP</span><span class="pv"></span><span class="pp">₹180</span></li><li><span class="pb">Surya</span><span class="pn">TURBO INVERTER LED LAMP</span><span class="pv"></span><span class="pp">₹599</span></li><li><span class="pb">Surya</span><span class="pn">PLL LED Lamp</span><span class="pv"></span><span class="pp">₹800</span></li><li><span class="pb">Halonix</span><span class="pn">Astron</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li></ul></div><div class="cat"><h4>Battens &amp; Tubelights <em>14</em></h4><ul class="plist"><li><span class="pb">Polycab</span><span class="pn">High Wattage LED Batten</span><span class="pv">4 var</span><span class="pp">₹750–₹1,500</span></li><li><span class="pb">Polycab</span><span class="pn">Neo Slim Batten</span><span class="pv">3 var</span><span class="pp">₹650</span></li><li><span class="pb">Polycab</span><span class="pn">Neo Slim LED Batten , 2ft</span><span class="pv">3 var</span><span class="pp">₹250</span></li><li><span class="pb">Polycab</span><span class="pn">3-in-1 CCT LED Batten</span><span class="pv"></span><span class="pp">₹800</span></li><li><span class="pb">Surya</span><span class="pn">Amaze Metallica LED Batten</span><span class="pv"></span><span class="pp">₹1,000</span></li><li><span class="pb">Surya</span><span class="pn">Brit-O LED Batten</span><span class="pv"></span><span class="pp">₹350</span></li><li><span class="pb">Surya</span><span class="pn">G-Line Angular</span><span class="pv"></span><span class="pp">₹325</span></li><li><span class="pb">Surya</span><span class="pn">G-Line Eco LED Batten</span><span class="pv"></span><span class="pp">₹300</span></li><li><span class="pb">Surya</span><span class="pn">G-Line Eco LED Batten (Colour)</span><span class="pv"></span><span class="pp">₹450</span></li><li><span class="pb">Surya</span><span class="pn">G-Line Eco Switch LED Batten</span><span class="pv"></span><span class="pp">₹600</span></li><li><span class="pb">Surya</span><span class="pn">G-Line Eco Turbo LED Batten</span><span class="pv"></span><span class="pp">₹550</span></li><li><span class="pb">Surya</span><span class="pn">Glaze LED Glass Tube</span><span class="pv"></span><span class="pp">₹400</span></li><li><span class="pb">Surya</span><span class="pn">Metallica Led Batten</span><span class="pv"></span><span class="pp">₹1,500</span></li><li><span class="pb">Surya</span><span class="pn">Nano LED Tube</span><span class="pv"></span><span class="pp">₹350</span></li></ul></div><div class="cat"><h4>Panels &amp; Downlights <em>21</em></h4><ul class="plist"><li><span class="pb">Polycab</span><span class="pn">Pearl COB Swivel LED Downlight</span><span class="pv">24 var</span><span class="pp">₹700–₹4,800</span></li><li><span class="pb">Polycab</span><span class="pn">Slim Glo LED JB Downlight</span><span class="pv">14 var</span><span class="pp">₹190–₹275</span></li><li><span class="pb">Polycab</span><span class="pn">Pearl LED Swivel Spot</span><span class="pv">12 var</span><span class="pp">₹390–₹890</span></li><li><span class="pb">Polycab</span><span class="pn">Scintillate LED Striker</span><span class="pv">12 var</span><span class="pp">₹200–₹300</span></li><li><span class="pb">Polycab</span><span class="pn">Polycab 3-in-1 CCT Tri-color Panel LED Light</span><span class="pv">8 var</span><span class="pp">₹800–₹1,600</span></li><li><span class="pb">Polycab</span><span class="pn">Pearl LED Nxt-G Spot</span><span class="pv">5 var</span><span class="pp">₹150</span></li><li><span class="pb">Surya</span><span class="pn">Aura COB</span><span class="pv"></span><span class="pp">₹325</span></li><li><span class="pb">Surya</span><span class="pn">Aura Maxx</span><span class="pv"></span><span class="pp">₹550</span></li><li><span class="pb">Surya</span><span class="pn">Aura Plus</span><span class="pv"></span><span class="pp">₹250</span></li><li><span class="pb">Surya</span><span class="pn">Aura Plus 3 in 1</span><span class="pv"></span><span class="pp">₹300</span></li><li><span class="pb">Surya</span><span class="pn">Aura Plus Multi</span><span class="pv"></span><span class="pp">₹300</span></li><li><span class="pb">Surya</span><span class="pn">Aura Prime</span><span class="pv"></span><span class="pp">₹300</span></li><li><span class="pb">Surya</span><span class="pn">Backlit Panel 2x2</span><span class="pv"></span><span class="pp">₹4,100</span></li><li><span class="pb">Surya</span><span class="pn">Dazzle - Round</span><span class="pv"></span><span class="pp">₹400</span></li><li><span class="pb">Surya</span><span class="pn">Dazzle - Square</span><span class="pv"></span><span class="pp">₹400</span></li><li><span class="pb">Surya</span><span class="pn">Dazzle 3 In 1 - Round</span><span class="pv"></span><span class="pp">₹700</span></li><li><span class="pb">Surya</span><span class="pn">Dazzle 3 In 1 - Square</span><span class="pv"></span><span class="pp">₹700</span></li><li><span class="pb">Surya</span><span class="pn">Dazzle Bulkhead</span><span class="pv"></span><span class="pp">₹450</span></li><li><span class="pb">Surya</span><span class="pn">Dazzle Maxx Senso Surface Round</span><span class="pv"></span><span class="pp">₹1,000</span></li><li><span class="pb">Surya</span><span class="pn">Dazzle Maxx Surface Round</span><span class="pv"></span><span class="pp">₹500</span></li><li><span class="pb">Surya</span><span class="pn">Aura Twin</span><span class="pv"></span><span class="pp">₹400</span></li></ul></div></section><section class="dept">
+<header class="dept-h"><h3>Decorative Lighting</h3><p class="dept-m"><span>13 products</span><span>47 source SKUs</span><span>₹249–₹9,995</span></p></header><div class="cat"><h4>Strip &amp; Rope Lights <em>8</em></h4><ul class="plist"><li><span class="pb">Polycab</span><span class="pn">120 LED ROPE LIGHT</span><span class="pv">18 var</span><span class="pp">₹4,500–₹9,995</span></li><li><span class="pb">Polycab</span><span class="pn">320 LED ZURO COB STRIP LIGHT</span><span class="pv">9 var</span><span class="pp">₹1,995</span></li><li><span class="pb">Polycab</span><span class="pn">120 LED STRIP LIGHT</span><span class="pv">6 var</span><span class="pp">₹1,680</span></li><li><span class="pb">Polycab</span><span class="pn">LED STRIP LIGHT DRIVER</span><span class="pv">3 var</span><span class="pp">₹595–₹1,295</span></li><li><span class="pb">Polycab</span><span class="pn">240 LED STRIP LIGHT</span><span class="pv">2 var</span><span class="pp">₹1,900</span></li><li><span class="pb">Surya</span><span class="pn">Profile Strip Light (5MTR.)</span><span class="pv">2 var</span><span class="pp">₹600–₹800</span></li><li><span class="pb">Surya</span><span class="pn">Jag-Mag Maxx String Light</span><span class="pv"></span><span class="pp">₹249</span></li><li><span class="pb">Surya</span><span class="pn">Jag-Mag String Light</span><span class="pv"></span><span class="pp">₹299</span></li></ul></div><div class="cat"><h4>Decorative COB <em>5</em></h4><ul class="plist"><li><span class="pb">Surya</span><span class="pn">Adore Cob Cylinder Surface Mount</span><span class="pv"></span><span class="pp">₹1,000</span></li><li><span class="pb">Surya</span><span class="pn">Bliss Deco Cob</span><span class="pv"></span><span class="pp">₹1,000</span></li><li><span class="pb">Surya</span><span class="pn">Innova Deco Cob</span><span class="pv"></span><span class="pp">₹400</span></li><li><span class="pb">Surya</span><span class="pn">Profile Strip Driver</span><span class="pv"></span><span class="pp">₹300</span></li><li><span class="pb">Surya</span><span class="pn">Rainbow Plus</span><span class="pv"></span><span class="pp">₹400</span></li></ul></div></section><section class="dept">
+<header class="dept-h"><h3>Kitchen Appliances</h3><p class="dept-m"><span>25 products</span><span>25 source SKUs</span><span>₹589–₹4,599</span></p></header><div class="cat"><h4>Mixer Grinders &amp; Juicers <em>10</em></h4><ul class="plist"><li><span class="pb">Indo</span><span class="pn">Indo Club 500 Watts Mixer Grinder</span><span class="pv"></span><span class="pp">₹1,699</span></li><li class="own"><span class="pb">Rexsun</span><span class="pn">Rexsun Chopper 300W</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li class="own"><span class="pb">Rexsun</span><span class="pn">Rexsun Hand Blender 300W</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li class="own"><span class="pb">Rexsun</span><span class="pn">Rexsun Juicer Mixer Grinder 500W</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li class="own"><span class="pb">Rexsun</span><span class="pn">Rexsun Mixer Grinder 550W (3 Jar)</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li class="own"><span class="pb">Rexsun</span><span class="pn">Rexsun Mixer Grinder 500W (2 Jar)</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">ALPHA MIXER GRINDER</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Aristeo-DX Juicer Mixer Grinder</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Aspire Mixer Grinder</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Bliss Mixer Grinder</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li></ul></div><div class="cat"><h4>Electric Kettles <em>5</em></h4><ul class="plist"><li><span class="pb">Indo</span><span class="pn">Indo 1.5 Litre Multipurpose Electric Kettle (Steel)</span><span class="pv"></span><span class="pp">₹599</span></li><li><span class="pb">Indo</span><span class="pn">Indo 1.8 Litre Multipurpose Electric Kettle (Black &amp; Grey)</span><span class="pv"></span><span class="pp">₹899</span></li><li><span class="pb">Indo</span><span class="pn">Indo 1.8 Litre Multipurpose Electric Kettle (Steel)</span><span class="pv"></span><span class="pp">₹589</span></li><li><span class="pb">Surya</span><span class="pn">Aqua-DX Electric Kettle</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Aqua-i Electric Kettle</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li></ul></div><div class="cat"><h4>Induction &amp; Cooktops <em>8</em></h4><ul class="plist"><li><span class="pb">Indo</span><span class="pn">Indo 2201 Portable Induction Cooktop (Electric Gas Chulha)</span><span class="pv"></span><span class="pp">₹1,899</span></li><li><span class="pb">Indo</span><span class="pn">Indo 2205 Portable Induction Cooktop No Radiation Electric Gas Chulha</span><span class="pv"></span><span class="pp">₹1,499</span></li><li><span class="pb">Indo</span><span class="pn">Indo 5515 Infrared Induction Cooktop No Radiation Electric Gas Chulha</span><span class="pv"></span><span class="pp">₹2,399</span></li><li><span class="pb">Indo</span><span class="pn">Indo 7705 Infrared Induction Cooktop No Radiation Electric Gas Chulha</span><span class="pv"></span><span class="pp">₹2,199</span></li><li><span class="pb">Surya</span><span class="pn">Blaze SS Cooktop</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Crystal-i Glass Cooktop 2 Burner</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Crystal-i Glass Cooktop 3 Burner</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Crystal-i Glass Cooktop 4 Burner</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li></ul></div><div class="cat"><h4>Air Fryers <em>2</em></h4><ul class="plist"><li><span class="pb">Indo</span><span class="pn">Indo 4 Litre Digital Air Fryer with Touch Panel, uses up to 90% less fat, 8…</span><span class="pv"></span><span class="pp">₹4,299</span></li><li><span class="pb">Indo</span><span class="pn">Indo 6 Litre Digital Air Fryer with Touch Panel, uses up to 90% less fat, 7…</span><span class="pv"></span><span class="pp">₹4,599</span></li></ul></div></section><section class="dept">
+<header class="dept-h"><h3>Water Heaters</h3><p class="dept-m"><span>30 products</span><span>38 source SKUs</span><span>₹449–₹13,990</span></p></header><div class="cat"><h4>Geysers &amp; Water Heaters <em>25</em></h4><ul class="plist"><li><span class="pb">Polycab</span><span class="pn">Celestia</span><span class="pv">3 var</span><span class="pp">₹10,490–₹12,290</span></li><li><span class="pb">Polycab</span><span class="pn">Elanza DLX</span><span class="pv">3 var</span><span class="pp">₹10,999–₹13,499</span></li><li><span class="pb">Polycab</span><span class="pn">POLYCABSUPERIA</span><span class="pv">3 var</span><span class="pp">₹11,990–₹13,990</span></li><li><span class="pb">Polycab</span><span class="pn">ELIANA</span><span class="pv">2 var</span><span class="pp">₹5,499–₹6,799</span></li><li><span class="pb">Polycab</span><span class="pn">INTENSO</span><span class="pv">2 var</span><span class="pp">₹5,499–₹6,799</span></li><li><span class="pb">Indo</span><span class="pn">Indo Avianca Water Geyser 25 Ltr (Water Heater For Bathroom &amp; Kitchen)</span><span class="pv"></span><span class="pp">₹8,699</span></li><li><span class="pb">Indo</span><span class="pn">Indo Elanza Pro 10 Litre Geyser, (Water Heater For Bathroom &amp; Kitchen)</span><span class="pv"></span><span class="pp">₹4,799</span></li><li><span class="pb">Indo</span><span class="pn">Indo Elanza Pro Water Geyser 15 ltr (Water Heater For Bathroom &amp; Kitchen)</span><span class="pv"></span><span class="pp">₹5,299</span></li><li><span class="pb">Indo</span><span class="pn">Indo Elanza Pro Water Geyser 25 Litre, (Water Heater For Bathroom &amp; Kitchen)</span><span class="pv"></span><span class="pp">₹5,899</span></li><li><span class="pb">Indo</span><span class="pn">Indo Jazz 3 Litre Instant Water Heater For Bathroom &amp; Kitchen</span><span class="pv"></span><span class="pp">₹2,199</span></li><li><span class="pb">Indo</span><span class="pn">Indo Platinum Plus 10 Litre Geyser/Water Heater For Bathroom</span><span class="pv"></span><span class="pp">₹3,399</span></li><li><span class="pb">Indo</span><span class="pn">Indo Platinum Plus 15 Litre Geyser/Water Heater For Bathroom</span><span class="pv"></span><span class="pp">₹3,899</span></li><li><span class="pb">Indo</span><span class="pn">Indo Platinum Plus 25 Litre Geyser/Water Heater For Bathroom</span><span class="pv"></span><span class="pp">₹4,499</span></li><li><span class="pb">Indo</span><span class="pn">Indo Aura Instant Water Heater/Geyser For Bathroom</span><span class="pv"></span><span class="pp">₹2,299</span></li><li><span class="pb">Indo</span><span class="pn">Indo Avianca 10 Litre Geyser/Water Heater For Bathroom &amp; Kitchen</span><span class="pv"></span><span class="pp">₹6,599</span></li><li class="own"><span class="pb">Rexsun</span><span class="pn">Rexsun Storage Water Heater 25L</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Arctic</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Arctic-Dx</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Arctic-Ex</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Atlantic-GLS Glass Lined Series</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Cubis</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Heatx-Dx Instant Gas Water Heater</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Insta-Hot Instant Water Heater</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Insta-Hot-DX Instant Water Heater</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">INSTA-WARM Instant Electric Water Heater (3L)</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li></ul></div><div class="cat"><h4>Immersion Rods <em>5</em></h4><ul class="plist"><li><span class="pb">Surya</span><span class="pn">HQI immersion Heater - Black</span><span class="pv"></span><span class="pp">₹750</span></li><li><span class="pb">Surya</span><span class="pn">HQI Water Proof (Auto Cut Sensor) Immersion Heater - Black</span><span class="pv"></span><span class="pp">₹925</span></li><li><span class="pb">Surya</span><span class="pn">HQI Water Proof Immersion Heater - Black</span><span class="pv"></span><span class="pp">₹875</span></li><li><span class="pb">Indo</span><span class="pn">Indo 1000 Watts Immersion Rod Water Heater</span><span class="pv"></span><span class="pp">₹449</span></li><li><span class="pb">Indo</span><span class="pn">Indo 1500 Watts Immersion Rod Water Heater</span><span class="pv"></span><span class="pp">₹499</span></li></ul></div></section><section class="dept">
+<header class="dept-h"><h3>Air Coolers</h3><p class="dept-m"><span>8 products</span><span>8 source SKUs</span><span>₹4,999–₹6,499</span></p></header><div class="cat"><h4>Air Coolers <em>8</em></h4><ul class="plist"><li><span class="pb">Indo</span><span class="pn">Indo 48 Litres Cooler ERICA 12 Inches Air Cooler For Home</span><span class="pv"></span><span class="pp">₹6,499</span></li><li><span class="pb">Indo</span><span class="pn">Indo ARIS 40 Litre High Speed Air Cooler for Home</span><span class="pv"></span><span class="pp">₹6,499</span></li><li><span class="pb">Indo</span><span class="pn">Indo JILL 48L Air Cooler for Room, High-Speed Air Cooler 2250 RPM, Honeycom…</span><span class="pv"></span><span class="pp">₹4,999</span></li><li><span class="pb">Surya</span><span class="pn">Breezo Air Cooler 110L</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Breezo Air Cooler 40L</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Breezo Air Cooler 45L</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Breezo Air Cooler 60L &amp; 85L</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li><li><span class="pb">Surya</span><span class="pn">Breezo Air Cooler 65L &amp; 90L</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li></ul></div></section><section class="dept">
+<header class="dept-h"><h3>Room Heaters</h3><p class="dept-m"><span>2 products</span><span>2 source SKUs</span><span>₹999–₹1,999</span></p></header><div class="cat"><h4>Room Heaters <em>2</em></h4><ul class="plist"><li><span class="pb">Indo</span><span class="pn">Indo 400/800 Watts Zolta Portable Electric Room Heater</span><span class="pv"></span><span class="pp">₹999</span></li><li><span class="pb">Indo</span><span class="pn">Indo Halogen Room Heater With 1200 Watts 3 Rods</span><span class="pv"></span><span class="pp">₹1,999</span></li></ul></div></section><section class="dept">
+<header class="dept-h"><h3>Garment Care</h3><p class="dept-m"><span>10 products</span><span>10 source SKUs</span><span>₹479–₹1,400</span></p></header><div class="cat"><h4>Irons <em>10</em></h4><ul class="plist"><li><span class="pb">Surya</span><span class="pn">Champ dry iron</span><span class="pv"></span><span class="pp">₹1,100</span></li><li><span class="pb">Surya</span><span class="pn">Hero Dry Iron</span><span class="pv"></span><span class="pp">₹750</span></li><li><span class="pb">Surya</span><span class="pn">Hero Plus Dry Iron</span><span class="pv"></span><span class="pp">₹775</span></li><li><span class="pb">Surya</span><span class="pn">Hero prime dry iron</span><span class="pv"></span><span class="pp">₹900</span></li><li><span class="pb">Indo</span><span class="pn">Indo 1000 Watts Dry Iron CRISIP with advance Non-stick PTFE Coated soleplate</span><span class="pv"></span><span class="pp">₹479</span></li><li><span class="pb">Indo</span><span class="pn">Indo 1000 Watts Dry Iron ELANZA with advance Non-stick PTFE Coated soleplate</span><span class="pv"></span><span class="pp">₹479</span></li><li><span class="pb">Indo</span><span class="pn">Indo Alexia Heavy Weight Iron 1000 Watts</span><span class="pv"></span><span class="pp">₹799</span></li><li><span class="pb">Indo</span><span class="pn">Indo Majesty DLX 1000W Best Iron For Effortless Press</span><span class="pv"></span><span class="pp">₹489</span></li><li><span class="pb">Indo</span><span class="pn">Indo Panther Heavy Weight Iron</span><span class="pv"></span><span class="pp">₹849</span></li><li><span class="pb">Surya</span><span class="pn">Macho Plus Dry Iron</span><span class="pv"></span><span class="pp">₹1,400</span></li></ul></div></section><section class="dept">
+<header class="dept-h"><h3>Torches &amp; Emergency</h3><p class="dept-m"><span>6 products</span><span>6 source SKUs</span><span>₹225–₹1,100</span></p></header><div class="cat"><h4>Torches <em>6</em></h4><ul class="plist"><li><span class="pb">Surya</span><span class="pn">Jolly Rechargeable LED Torch</span><span class="pv"></span><span class="pp">₹310</span></li><li><span class="pb">Surya</span><span class="pn">Kisaan Maxx Rechargeable LED Torch</span><span class="pv"></span><span class="pp">₹1,100</span></li><li><span class="pb">Surya</span><span class="pn">Kisaan Rechargeable LED Torch</span><span class="pv"></span><span class="pp">₹1,100</span></li><li><span class="pb">Surya</span><span class="pn">Ray Mini Rechargeable LED Torch</span><span class="pv"></span><span class="pp">₹225</span></li><li><span class="pb">Surya</span><span class="pn">Ray Rechargeable LED Torch</span><span class="pv"></span><span class="pp">₹650</span></li><li><span class="pb">Halonix</span><span class="pn">Massal Mini</span><span class="pv"></span><span class="pp"><span class="np">price TBD</span></span></li></ul></div></section><section class="dept">
+<header class="dept-h"><h3>Home Essentials</h3><p class="dept-m"><span>20 products</span><span>25 source SKUs</span><span>₹36–₹875</span></p></header><div class="cat"><h4>Accessories <em>6</em></h4><ul class="plist"><li><span class="pb">Polycab</span><span class="pn">One Universal + Two 2Pin</span><span class="pv">3 var</span><span class="pp">₹125–₹250</span></li><li><span class="pb">Polycab</span><span class="pn">One Universal + Twin USB</span><span class="pv">2 var</span><span class="pp">₹435</span></li><li><span class="pb">Polycab</span><span class="pn">2 Pin, 1.5 Mtr, 2 USB, 2 Socket</span><span class="pv"></span><span class="pp">₹750</span></li><li><span class="pb">Polycab</span><span class="pn">3-Pin, 4+1, 1.5 Mtr</span><span class="pv"></span><span class="pp">₹650</span></li><li><span class="pb">Polycab</span><span class="pn">3-Pin, 4+1, 3 Mtr</span><span class="pv"></span><span class="pp">₹575</span></li><li><span class="pb">Polycab</span><span class="pn">3-Pin, Twin USB, 4+1, 3 Mtr</span><span class="pv"></span><span class="pp">₹875</span></li></ul></div><div class="cat"><h4>Plugs &amp; Multiplugs <em>1</em></h4><ul class="plist"><li><span class="pb">Polycab</span><span class="pn">3 Pin Plug Top</span><span class="pv">2 var</span><span class="pp">₹55–₹84</span></li></ul></div><div class="cat"><h4>Holders &amp; Ceiling Roses <em>9</em></h4><ul class="plist"><li><span class="pb">Polycab</span><span class="pn">Angle Holder</span><span class="pv">2 var</span><span class="pp">₹36–₹71</span></li><li><span class="pb">Polycab</span><span class="pn">Batten Holder</span><span class="pv"></span><span class="pp">₹71</span></li><li><span class="pb">Polycab</span><span class="pn">Ceiling Rose 2 Terminal</span><span class="pv"></span><span class="pp">₹39</span></li><li><span class="pb">Polycab</span><span class="pn">Jumbo Ceiling Rose 2 Terminal</span><span class="pv"></span><span class="pp">₹61</span></li><li><span class="pb">Polycab</span><span class="pn">Jumbo Ceiling Rose 3 Terminal</span><span class="pv"></span><span class="pp">₹72</span></li><li><span class="pb">Polycab</span><span class="pn">Lamp Holder</span><span class="pv"></span><span class="pp">₹36</span></li><li><span class="pb">Polycab</span><span class="pn">Modular Angle Holder</span><span class="pv"></span><span class="pp">₹101</span></li><li><span class="pb">Polycab</span><span class="pn">Modular Batten Holder</span><span class="pv"></span><span class="pp">₹101</span></li><li><span class="pb">Polycab</span><span class="pn">Modular Ceiling Rose</span><span class="pv"></span><span class="pp">₹69</span></li></ul></div><div class="cat"><h4>Doorbells <em>2</em></h4><ul class="plist"><li><span class="pb">Polycab</span><span class="pn">Ding Dong</span><span class="pv"></span><span class="pp">₹205</span></li><li><span class="pb">Polycab</span><span class="pn">Electronic Ding-Dong</span><span class="pv"></span><span class="pp">₹245</span></li></ul></div><div class="cat"><h4>Extension &amp; Spike Guards <em>1</em></h4><ul class="plist"><li><span class="pb">Surya</span><span class="pn">Extension Reel</span><span class="pv"></span><span class="pp">₹449</span></li></ul></div><div class="cat"><h4>Mosquito Rackets <em>1</em></h4><ul class="plist"><li><span class="pb">Surya</span><span class="pn">Mosquito Racket</span><span class="pv"></span><span class="pp">₹575</span></li></ul></div></section>
+</section>
+
+<section class="blk" id="cuts">
+  <h2>What I cut</h2>
+  <h3 class="lead">2,305 SKUs stay on the B2B site</h3>
+  <div class="cols">
+    <div class="in">
+      <h4><span class="dot"></span>Kept, and why</h4>
+      <ul>
+        <li><b>Ceiling, table, pedestal, wall and exhaust fans</b> — the single largest online electrical category in India, and Polycab's range here is genuinely competitive.</li>
+        <li><b>LED bulbs, battens, panels, downlights</b> — low ticket, high repeat, ships flat. Good for first orders and for average basket size.</li>
+        <li><b>Geysers, immersion rods, room heaters, coolers</b> — seasonal spikes you can plan campaigns around.</li>
+        <li><b>Mixers, kettles, induction, irons, air fryers</b> — where Rexsun's own range sits, so the category has to exist.</li>
+        <li><b>Spike guards, multiplugs, holders, ceiling roses, doorbells</b> — genuine self-install items and useful basket fillers.</li>
+      </ul>
+    </div>
+    <div class="out">
+      <h4><span class="dot"></span>Cut, and why</h4>
+      <ul>
+        <li><b>Switchgear — 492 SKUs</b> (MCB, RCBO, RCCB, distribution boards). Chosen by an electrician against a load schedule, not by a homeowner. Wrong selection is a safety issue.</li>
+        <li><b>House wire — 248 SKUs.</b> Sold in 90 m and 180 m coils at ₹2,700–₹45,100. That is a contractor purchase.</li>
+        <li><b>Modular switches and plates — 495 SKUs.</b> Bought as a whole-house set with an electrician, and returns on the wrong plate size are painful. Worth revisiting later as curated room kits.</li>
+        <li><b>Solar grid-tie inverters — 42 SKUs</b> up to ₹8.67 lakh. Site survey, subsidy paperwork, installation. Not a cart item.</li>
+        <li><b>Commercial and industrial luminaires, street and flood lights, hospitality modules.</b> Specified by consultants.</li>
+        <li><b>Air circulators and heavy-duty farrata fans</b> at ₹11,000–₹18,000 — factory equipment.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="gaps">
+  <h2>Data gaps</h2>
+  <h3 class="lead">Four things that block a launch, in priority order</h3>
+  <div class="q">
+    <div><span class="qm">01</span><div><h4>41 of 268 products have no published price</h4>
+      <p>Halonix publishes no MRP at all, and Surya publishes it only on some ranges. The affected lines are marked <em>price TBD</em> in the list above — heaviest in mixer grinders, Surya water heaters and air coolers. Either you give me a price list for these, or I drop them from launch and add them in phase two. <em>They cannot go live without a price.</em></p></div></div>
+    <div><span class="qm">02</span><div><h4>Product images are manufacturer catalogue shots</h4>
+      <p>2,524 of the 2,573 products have a cached image, so coverage is not the problem — quality and rights are. They are scraped from Polycab, Surya and Halonix websites. <em>For a consumer store you need written permission from each brand to use their product photography</em>, which is normally routine for an authorised dealer but has to be asked for. Rexsun's own six need proper shoots regardless.</p></div></div>
+    <div><span class="qm">03</span><div><h4>No descriptive copy worth reading</h4>
+      <p>The trade file carries spec tables — sweep, wattage, RPM, air delivery — and almost no consumer-facing description. Every one of the 268 needs a short benefit-led paragraph and three or four bullet points. I can draft all of them from the specs; you review the ones that make claims.</p></div></div>
+    <div><span class="qm">04</span><div><h4>Nothing in the data says what is deliverable</h4>
+      <p>A 25 L geyser and a ₹36 lamp holder cannot ship the same way. Every product needs a weight, a box size, and a flag for whether it needs installation. <em>This determines shipping charges, so it has to be settled before checkout is built.</em></p></div></div>
+  </div>
+</section>
+
+<section class="blk" id="features">
+  <h2>Site features</h2>
+  <h3 class="lead">Nine things the store does. Nothing else.</h3>
+  <p class="body">You asked for simple, and simple is also correct here — a first-time visitor buying a ceiling fan should never meet a feature they have to learn. Everything below earns its place by removing a reason not to buy.</p>
+  <div class="feat">
+    <article><span class="fn">Core</span><h4>Shop by room, not by department</h4>
+      <p>Bathroom, kitchen, bedroom, living room, outdoor. Most people do not arrive thinking "exhaust fan" — they think "the bathroom needs sorting". The department nav stays for people who know what they want.</p></article>
+    <article><span class="fn">Core</span><h4>One page per product, variants inside it</h4>
+      <p>Size, finish, wattage and light colour are pickers on the page. Price, image and stock update as you choose. This is the variant merge, made visible.</p></article>
+    <article><span class="fn">Core</span><h4>Filters that match how people decide</h4>
+      <p>Room size for fans, brightness in watts for lights, litres for geysers, price band, brand, BLDC or induction motor. Not a wall of 30 spec checkboxes.</p></article>
+    <article><span class="fn">Differentiator</span><h4>"Which size do I need?" helper</h4>
+      <p>Three questions on fan and geyser pages — room dimensions, ceiling height, how many people bathe — and it recommends a sweep or a litre capacity. This is the single most common pre-purchase question in this category and nobody answers it well.</p></article>
+    <article><span class="fn">Differentiator</span><h4>Running-cost line on every fan and light</h4>
+      <p>"About ₹340 a year at 8 hours a day." It makes the case for a BLDC fan at ₹6,099 over an induction fan at ₹2,799 far better than a spec table does, and it is honest arithmetic from the wattage you already hold.</p></article>
+    <article><span class="fn">Differentiator</span><h4>Warranty and service, stated plainly</h4>
+      <p>Warranty period on the product card, and a service page that says who to call. In this category trust is the whole purchase decision, and most competing sites bury it.</p></article>
+    <article><span class="fn">Checkout</span><h4>Guest checkout, three fields, UPI first</h4>
+      <p>Phone, address, pay. Account creation offered after the order, never before it. UPI at the top of the payment list because that is what the majority will use.</p></article>
+    <article><span class="fn">Checkout</span><h4>Delivery date before payment</h4>
+      <p>Pincode entered on the product page returns a real date and any installation charge, so nothing changes at the last step.</p></article>
+    <article><span class="fn">Post-order</span><h4>Order tracking on a phone number</h4>
+      <p>No login. Enter the number you ordered with, see where it is. Plus WhatsApp updates at dispatch and delivery.</p></article>
+  </div>
+  <div class="note">
+    <h4>Deliberately not building</h4>
+    <p>No order pad. No bulk-quantity grid. No dealer login, tier pricing, GSTIN capture, quotation flow, or enquiry cart — every one of those is an Amit Electricals feature and every one of them would confuse a consumer. Also skipping, for v1: wishlists, reviews (nothing to show on day one), loyalty points, and a chatbot.</p>
+  </div>
+</section>
+
+<section class="blk" id="ux">
+  <h2>UI / UX</h2>
+  <h3 class="lead">Five screens, and a rule for each</h3>
+  <div class="flow">
+    <div><span class="fs">Screen 1</span><h5>Home</h5><p>Rexsun's own six above the fold, then shop-by-room tiles, then the seasonal category. A shopper reaches a product in two taps.</p></div>
+    <div><span class="fs">Screen 2</span><h5>Category</h5><p>Filters in a left rail on desktop, one sheet on mobile. Cards show image, name, price, warranty, key spec. Nothing else.</p></div>
+    <div><span class="fs">Screen 3</span><h5>Product</h5><p>Gallery, price, variant pickers, pincode and date, Add to cart. Specs, running cost and warranty below, in that order.</p></div>
+    <div><span class="fs">Screen 4</span><h5>Cart &amp; checkout</h5><p>One page. Items, address, payment, total. No steps, no progress bar, no upsell interruptions.</p></div>
+    <div><span class="fs">Screen 5</span><h5>Confirmation</h5><p>Order number, delivery date, WhatsApp opt-in, and a tracking link that needs no password.</p></div>
+  </div>
+  <p class="body" style="margin-top:26px">The visual direction takes its cue from the creatives you already have: Rexsun's red and gold on clean white, with heavy sans headlines and a lot of daylight around the product. Photography-led, not illustration-led. Mobile is the primary design target — assume three-quarters of traffic and nearly all first visits arrive on a phone, and design the desktop layout up from that.</p>
+  <p class="body">Two rules I would like to hold to throughout: <strong>every price on screen is the price you pay</strong> — shipping and installation stated on the product page, never revealed at checkout; and <strong>no interruption before the cart</strong> — no newsletter overlay, no spin-to-win, no exit popup. In a trust-led category those cost more orders than they capture emails.</p>
+</section>
+
+<section class="blk" id="build">
+  <h2>Build plan</h2>
+  <h3 class="lead">Same stack as Amit Electricals, different shape</h3>
+  <p class="body">Next.js with the catalogue as a build-time file, exactly as the B2B site works — 268 products is small, so category and product pages render instantly with no database round trip. The database holds only what actually changes: orders, addresses, stock and price overrides. Razorpay for payments, which covers UPI, cards, net banking and the wallets, and supports the refund flow you will need. The site runs on port 3690 locally, alongside your other projects.</p>
+  <p class="body">Sequence: catalogue import and taxonomy first, then the browse and product pages, then cart and Razorpay, then the order and tracking flow, then the Rexsun brand pages and the two calculators. The store is a working shop by the end of the third stage; everything after that is polish.</p>
+</section>
+
+<section class="blk" id="decide">
+  <h2>Your decisions</h2>
+  <h3 class="lead">Six answers and I start building</h3>
+  <div class="q">
+    <div><span class="qm">01</span><div><h4>Is 268 the right number, or should I trim to 200?</h4><p>I can cut the thinnest 68 — mostly single-variant Surya lighting lines — and launch tighter. My recommendation is to keep 268: the depth is in fans and lighting, which is where the searches are.</p></div></div>
+    <div><span class="qm">02</span><div><h4>The 41 unpriced products — price list, or drop them?</h4><p>Includes almost the whole Surya mixer grinder range and the Surya water heaters. If Rexsun's own mixers are covering that shelf anyway, dropping them is defensible.</p></div></div>
+    <div><span class="qm">03</span><div><h4>Selling price against MRP</h4><p>The list above is MRP. Do you want a flat discount across the store, a margin rule per category, or a price set line by line? This decides whether I build a pricing rule or a price column.</p></div></div>
+    <div><span class="qm">04</span><div><h4>Where do you deliver, and who installs?</h4><p>Tricity only, North India, or pan-India through a courier? And is geyser and ceiling-fan installation something you offer, charge for, or leave to the customer? This changes the product page, not just the shipping table.</p></div></div>
+    <div><span class="qm">05</span><div><h4>Rexsun's six: prices, warranty text, and photography</h4><p>Nothing about the own-label range can go live without these, and they are the pages that matter most.</p></div></div>
+    <div><span class="qm">06</span><div><h4>Do the other four brands appear by name?</h4><p>I have assumed yes — Polycab, Surya, Halonix and Indo shown plainly as the brands you retail, with Rexsun as the house label. Confirm, because it changes the navigation and the whole trust story.</p></div></div>
+  </div>
+</section>
+
+<footer>
+  <span>Rexsun D2C · Report 01 · Catalogue shortlist</span>
+  <span>Source: Amit Electricals catalogue, 2,573 SKUs</span>
+</footer>
+
+</div>

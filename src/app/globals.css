@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/* Rexsun storefront design tokens.
+   Red and gold come off the brand creatives; everything else is a neutral
+   chosen to sit under them without competing. Light-only by design — a
+   consumer shop reads as one confident, bright surface. */
+@theme {
+  --color-rex-red: #d01c22;
+  --color-rex-red-dark: #a8151a;
+  --color-rex-red-tint: #fdf0f0;
+  --color-rex-gold: #d99a24;
+  --color-rex-gold-tint: #fdf6e8;
+
+  --color-ink: #16181c;
+  --color-ink-2: #4b515c;
+  --color-ink-3: #79808d;
+
+  --color-line: #e4e7ec;
+  --color-line-2: #cfd4dc;
+  --color-page: #f4f5f7;
+  --color-card: #ffffff;
+
+  --color-save: #0f7b4f;
+  --color-save-tint: #eaf7f0;
+
+  --font-display: Archivo, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: Manrope, "Helvetica Neue", Arial, sans-serif;
+
+  --radius-card: 10px;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-page);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Horizontal product rails: scroll, don't wrap, and hide the bar on desktop. */
+.rail {
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+}
+.rail::-webkit-scrollbar {
+  display: none;
+}
+.rail > * {
+  scroll-snap-align: start;
+}
+
+/* Every interactive element needs a visible focus ring — a lot of this store
+   gets used one-handed on a phone, but keyboard users exist too. */
+:focus-visible {
+  outline: 2px solid var(--color-rex-red);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Placeholder art for banners and missing product shots. Deliberately plain:
+   a labelled grey block reads as "image goes here", never as real photography. */
+.ph {
+  background:
+    repeating-linear-gradient(45deg, #eceef2 0 10px, #f3f5f8 10px 20px);
+  color: var(--color-ink-3);
+}
