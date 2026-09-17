@@ -12,6 +12,9 @@ and the original source of the product data.
 - `npm run reset` — wipes every table and seeds from scratch. Destroys orders.
 - `npm run db` — Prisma Studio, for looking at the data directly.
 
+Optional integrations all live in `.env` and are **off by default**; the shop
+degrades honestly rather than breaking when one is missing. See `.env.example`.
+
 Admin sign-in: `ADMIN_EMAIL` / `ADMIN_PASSWORD` in `.env`, seeded on first run.
 
 ## Architecture
@@ -46,9 +49,30 @@ sweep, so it is not a picker).
 No order pad, dealer login, tier pricing, GSTIN capture or enquiry cart — those
 belong to Amit Electricals and would confuse a consumer here.
 
+## Integrations, and what happens without them
+
+**Payments — Razorpay** (`RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`,
+`RAZORPAY_WEBHOOK_SECRET`). With keys, a prepaid order opens Razorpay's sheet and
+is confirmed two ways: the browser callback and the webhook at
+`/api/payments/webhook`. Either can arrive first; both end in the same state.
+Without keys the order is still created and the customer is told plainly that we
+will call to collect payment. The key secret never leaves the server, and every
+signature is verified with `timingSafeEqual`.
+
+**Messaging — WhatsApp Cloud API and Resend** (`WHATSAPP_TOKEN`,
+`WHATSAPP_PHONE_ID`, `RESEND_API_KEY`, `EMAIL_FROM`). Every message is written to
+the `Notification` table *before* a provider is asked to deliver it, so nothing
+is lost when a provider is down and the panel can always show what the customer
+should have been told. Unconfigured channels mark messages SKIPPED with the text
+intact — see `/admin/messages`.
+
+**Invoices** need nothing. `/order/[ref]/invoice` is a printable GST tax invoice;
+the browser prints it to PDF. Numbers are assigned on *confirmation*, never on
+placement, so a cancelled order never takes a number out of the sequence. Prices
+are GST-inclusive, so tax is extracted from the total rather than added to it —
+the customer must see the number they actually paid.
+
 ## Still to wire
 
-- **Payments.** Checkout records the chosen method and marks prepaid orders
-  PENDING; no gateway is connected. Cash on delivery works end to end today.
-- **WhatsApp / email notifications.** The copy promises them; nothing sends yet.
-- **Invoices.** No PDF generation.
+- **Courier integration.** Tracking numbers are typed in by hand.
+- **Reviews.** Deliberately out of v1 — there is nothing to show on day one.

@@ -5,3 +5,12 @@ node_modules
 .env*
 /uploads/*
 !/uploads/.gitkeep
+
+# The dev database holds password hashes, customer phones and addresses —
+# it must never be committed, least of all to a public repo.
+prisma/*.db
+prisma/*.db-journal
+.dev.log
+
+# Keep the template so a fresh clone knows what to fill in.
+!.env.example
