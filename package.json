@@ -10,7 +10,8 @@
     "seed": "node --env-file=.env scripts/seed.mjs",
     "reset": "node --env-file=.env scripts/seed.mjs --reset",
     "db": "prisma studio",
-    "migrate": "prisma migrate dev"
+    "migrate": "prisma migrate dev",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",

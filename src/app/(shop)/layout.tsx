@@ -7,9 +7,10 @@ import { Footer } from "@/components/Footer";
 import { getTaxonomy, getAnnouncement, getStoreSettings } from "@/lib/store";
 import { getCustomer } from "@/lib/auth";
 import { OrganizationSchema } from "@/components/StructuredData";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3700"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Rexsun — Fans, Lights & Home Appliances Online",
     template: "%s | Rexsun",

@@ -40,8 +40,22 @@ export async function POST(request: Request) {
   const filename = `${safe}-${crypto.randomBytes(4).toString("hex")}.${ext}`;
 
   const dir = path.join(process.cwd(), "public", "uploads");
-  await fs.mkdir(dir, { recursive: true });
-  await fs.writeFile(path.join(dir, filename), Buffer.from(await file.arrayBuffer()));
+  try {
+    await fs.mkdir(dir, { recursive: true });
+    await fs.writeFile(path.join(dir, filename), Buffer.from(await file.arrayBuffer()));
+  } catch (e) {
+    // Serverless hosts give you a read-only filesystem, so this is the one
+    // place the admin panel needs object storage before it can go live.
+    const readOnly = (e as NodeJS.ErrnoException)?.code === "EROFS";
+    return NextResponse.json(
+      {
+        error: readOnly
+          ? "This server cannot store uploads. Connect a file store (Vercel Blob or S3) to upload images here — meanwhile you can paste the path of an image already in the site."
+          : "Could not save that image. Try again.",
+      },
+      { status: readOnly ? 501 : 500 }
+    );
+  }
 
   const url = `/uploads/${filename}`;
   await db.media.create({ data: { url, filename, mime: file.type, size: file.size } });

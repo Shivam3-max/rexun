@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getCatalog, getTaxonomy } from "@/lib/store";
-
-const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3700";
+import { SITE_URL } from "@/lib/site";
 
 /**
  * Every page worth indexing, generated from the live catalogue so a product
@@ -15,7 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "", "/categories", "/rooms", "/rexsun", "/track", "/contact",
     "/help/shipping", "/help/returns", "/help/warranty", "/help/size-guide",
   ].map((path) => ({
-    url: `${BASE}${path}`,
+    url: `${SITE_URL}${path}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: path === "" ? 1 : 0.6,
@@ -27,14 +26,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...taxonomy.rooms.map((r) => `/rooms/${r.slug}`),
     ...taxonomy.brands.map((b) => `/brands/${b.slug}`),
   ].map((path) => ({
-    url: `${BASE}${path}`,
+    url: `${SITE_URL}${path}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
   const products = catalog.map((p) => ({
-    url: `${BASE}/p/${p.slug}`,
+    url: `${SITE_URL}/p/${p.slug}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: p.own ? 0.9 : 0.7,

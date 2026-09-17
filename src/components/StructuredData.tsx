@@ -1,6 +1,5 @@
 import type { Product } from "@/lib/types";
-
-const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3700";
+import { SITE_URL, absolute } from "@/lib/site";
 
 /**
  * schema.org JSON-LD. Worth the effort in this category: a price, a rating-free
@@ -15,7 +14,7 @@ export function ProductSchema({ p }: { p: Product }) {
     description: p.tagline || p.description || `${p.name} from ${p.brand}`,
     sku: p.variants[0]?.sku,
     brand: { "@type": "Brand", name: p.brand },
-    image: p.images.map((i) => `${BASE}${i}`),
+    image: p.images.map((i) => absolute(i)),
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "INR",
@@ -25,7 +24,7 @@ export function ProductSchema({ p }: { p: Product }) {
       availability: p.inStock
         ? "https://schema.org/InStock"
         : "https://schema.org/OutOfStock",
-      url: `${BASE}/p/${p.slug}`,
+      url: absolute(`/p/${p.slug}`),
     },
     ...(p.warranty ? { warranty: p.warranty } : {}),
   };
@@ -44,7 +43,7 @@ export function BreadcrumbSchema({
       "@type": "ListItem",
       position: i + 1,
       name: t.name,
-      item: `${BASE}${t.path}`,
+      item: absolute(t.path),
     })),
   };
   return <Script data={data} />;
@@ -59,7 +58,7 @@ export function OrganizationSchema({
     "@context": "https://schema.org",
     "@type": "Store",
     name: store.name,
-    url: BASE,
+    url: SITE_URL,
     ...(store.phone ? { telephone: store.phone } : {}),
     ...(store.email ? { email: store.email } : {}),
     ...(store.address ? { address: { "@type": "PostalAddress", streetAddress: store.address } } : {}),
