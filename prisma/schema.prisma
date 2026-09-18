@@ -1,9 +1,7 @@
 // Rexsun storefront + admin database.
 //
-// SQLite locally so the whole store runs with no services to start; the
-// provider swaps to postgresql for deployment (Vercel's filesystem is
-// ephemeral). Nothing in the schema depends on SQLite-only behaviour — JSON
-// columns are stored as strings and parsed in src/lib/store.ts.
+// MySQL is used in production through Hostinger's managed database. JSON
+// values remain strings so the application's storage format stays portable.
 
 generator client {
   provider = "prisma-client-js"
@@ -11,32 +9,32 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 // ------------------------------------------------------------------ staff
 
 model AdminUser {
-  id           String   @id @default(cuid())
-  email        String   @unique
+  id           String    @id @default(cuid())
+  email        String    @unique
   name         String
   passwordHash String
-  role         String   @default("ADMIN") // ADMIN | STAFF
-  active       Boolean  @default(true)
+  role         String    @default("ADMIN") // ADMIN | STAFF
+  active       Boolean   @default(true)
   lastLoginAt  DateTime?
-  createdAt    DateTime @default(now())
+  createdAt    DateTime  @default(now())
 
   sessions AdminSession[]
   audits   AuditLog[]
 }
 
 model AdminSession {
-  id        String   @id @default(cuid())
-  token     String   @unique
+  id        String    @id @default(cuid())
+  token     String    @unique
   userId    String
   user      AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
   expiresAt DateTime
 
   @@index([userId])
@@ -45,12 +43,12 @@ model AdminSession {
 // -------------------------------------------------------------- catalogue
 
 model Department {
-  id       String @id @default(cuid())
-  slug     String @unique
+  id       String  @id @default(cuid())
+  slug     String  @unique
   name     String
-  blurb    String @default("")
+  blurb    String  @default("")
   image    String?
-  position Int    @default(0)
+  position Int     @default(0)
   visible  Boolean @default(true)
 
   categories Category[]
@@ -58,14 +56,14 @@ model Department {
 }
 
 model Category {
-  id       String @id @default(cuid())
-  slug     String @unique
+  id       String     @id @default(cuid())
+  slug     String     @unique
   name     String
   deptId   String
   dept     Department @relation(fields: [deptId], references: [id], onDelete: Cascade)
   image    String?
-  position Int    @default(0)
-  visible  Boolean @default(true)
+  position Int        @default(0)
+  visible  Boolean    @default(true)
 
   products Product[]
 
@@ -73,8 +71,8 @@ model Category {
 }
 
 model Product {
-  id         String @id @default(cuid())
-  slug       String @unique
+  id         String     @id @default(cuid())
+  slug       String     @unique
   name       String
   brand      String
   deptId     String
@@ -83,12 +81,12 @@ model Product {
   category   Category   @relation(fields: [categoryId], references: [id])
 
   tagline     String @default("")
-  description String @default("")
-  highlights  String @default("[]") // JSON string[]
-  specs       String @default("{}") // JSON Record<string,string>
-  rooms       String @default("[]") // JSON string[]
-  images      String @default("[]") // JSON string[]
-  options     String @default("[]") // JSON Option[]
+  description String @default("") @db.Text
+  highlights  String @default("[]") @db.Text // JSON string[]
+  specs       String @default("{}") @db.Text // JSON Record<string,string>
+  rooms       String @default("[]") @db.Text // JSON string[]
+  images      String @default("[]") @db.LongText // JSON string[]
+  options     String @default("[]") @db.Text // JSON Option[]
 
   warranty String?
   wattage  Int?
@@ -108,8 +106,8 @@ model Product {
   position       Int     @default(0)
 
   variants  Variant[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 
   @@index([deptId])
   @@index([categoryId])
@@ -136,8 +134,8 @@ model Variant {
 // -------------------------------------------------------------- customers
 
 model Customer {
-  id           String  @id @default(cuid())
-  phone        String  @unique
+  id           String   @id @default(cuid())
+  phone        String   @unique
   name         String
   email        String?
   passwordHash String? // null for guests who never set one
@@ -186,18 +184,18 @@ model Order {
   name    String
   phone   String
   email   String?
-  address String
+  address String  @db.Text
   city    String
-  state   String @default("")
+  state   String  @default("")
   pincode String
 
   status        String @default("PLACED") // PLACED CONFIRMED PACKED SHIPPED DELIVERED CANCELLED
-  paymentMethod String @default("upi")    // upi card netbanking cod
+  paymentMethod String @default("upi") // upi card netbanking cod
   paymentStatus String @default("PENDING") // PENDING PAID REFUNDED FAILED
 
   subtotal   Int
-  discount   Int    @default(0)
-  shipping   Int    @default(0)
+  discount   Int     @default(0)
+  shipping   Int     @default(0)
   total      Int
   couponCode String?
 
@@ -212,7 +210,7 @@ model Order {
 
   /// Invoices are numbered only once an order is confirmed, so cancelled
   /// orders never consume a number in the sequence.
-  invoiceNo String? @unique
+  invoiceNo String?   @unique
   invoiceAt DateTime?
 
   cancelReason String?
@@ -293,7 +291,7 @@ model Banner {
 
 model Setting {
   key   String @id
-  value String // JSON
+  value String @db.Text // JSON
 }
 
 model Enquiry {
@@ -302,9 +300,9 @@ model Enquiry {
   phone     String
   email     String?
   subject   String   @default("General")
-  message   String
+  message   String   @db.Text
   status    String   @default("NEW") // NEW | REPLIED | CLOSED
-  reply     String?
+  reply     String?  @db.Text
   createdAt DateTime @default(now())
 
   @@index([status])
@@ -320,15 +318,15 @@ model SearchLog {
 }
 
 model AuditLog {
-  id       String   @id @default(cuid())
+  id       String     @id @default(cuid())
   userId   String?
   user     AdminUser? @relation(fields: [userId], references: [id])
   actor    String
   action   String
   entity   String
-  entityId String   @default("")
-  detail   String   @default("")
-  at       DateTime @default(now())
+  entityId String     @default("")
+  detail   String     @default("") @db.Text
+  at       DateTime   @default(now())
 
   @@index([at])
 }
@@ -358,10 +356,10 @@ model ReturnRequest {
 
   type   String @default("REPLACE") // REPLACE | REFUND
   reason String
-  detail String @default("")
+  detail String @default("") @db.Text
 
   status     String  @default("OPEN") // OPEN | APPROVED | REJECTED | RESOLVED
-  resolution String?
+  resolution String? @db.Text
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -381,11 +379,11 @@ model Notification {
   to       String
   template String
   subject  String @default("")
-  body     String
+  body     String @db.Text
 
   orderRef String?
   status   String  @default("QUEUED") // QUEUED | SENT | FAILED | SKIPPED
-  error    String?
+  error    String? @db.Text
 
   createdAt DateTime  @default(now())
   sentAt    DateTime?
